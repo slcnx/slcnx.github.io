@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>Linux历史</title>
+    <link href="/2022/05/14/Linux%E5%8E%86%E5%8F%B2/"/>
+    <url>/2022/05/14/Linux%E5%8E%86%E5%8F%B2/</url>
+    
+    <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>linux发展历</p><span id="more"></span>]]></content>
+    
+    
+    <categories>
+      
+      <category>学习计划</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>linux</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>个人计划</title>
+    <link href="/2022/05/14/%E4%B8%AA%E4%BA%BA%E8%AE%A1%E5%88%92/"/>
+    <url>/2022/05/14/%E4%B8%AA%E4%BA%BA%E8%AE%A1%E5%88%92/</url>
+    
+    <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>刚学linux, 做一些计划。</p><span id="more"></span><h1 id="时间安排"><a href="#时间安排" class="headerlink" title="时间安排"></a>时间安排</h1><p><img src="image-20220514205710517.png" alt="image-20220514205710517"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>个人总结</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>linux</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>快速搭建自己的个人博客</title>
+    <link href="/2022/05/13/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
+    <url>/2022/05/13/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>完全免费</p><ol><li><p>通过<strong>淘宝账号</strong>登陆, <code>codeup.aliyun.com</code>,  免费。</p></li><li><p>登陆 <code>github.com</code> ，注册一个账号，免费。我这里账号是<code>slcnx</code></p></li><li><p>安装windows git,  <a href="https://gitforwindows.org/">https://gitforwindows.org/</a> 下载之后，直接安装。</p><p>需要先验证git, windows 打开 <code>CMD</code> , 输入 <code>git --version</code> <strong>看到</strong>版本号，说明git安装OK</p><p><img src="image-20220513093045210.png" alt="image-20220513093045210"></p></li><li><p>安装windows node,  <a href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a> 下载之后，直接安装</p><p>需要先验证node, windows 打开 <code>CMD</code> , 输入 <code>node --version</code> <strong>看到</strong>版本号，说明node安装OK</p><p><img src="image-20220513093341959.png" alt="image-20220513093341959"></p></li><li><p>安装vscode, <a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a> 下载之后，直接安装</p></li><li><p>安装typora, <a href="https://typora.io/releases/all">https://typora.io/releases/all</a> 下载, 直接安装</p></li></ol><span id="more"></span><h1 id="准备hexo基础模板"><a href="#准备hexo基础模板" class="headerlink" title="准备hexo基础模板"></a>准备hexo基础模板</h1><p>克隆git, 在CMD执行, 以下目录</p><figure class="highlight awk"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><pre><code class="hljs awk">git clone --recurse-submodules https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/slcnx/</span>hexo-template.git blog<br></code></pre></td></tr></table></figure><blockquote><p>不成功多执行几次， 当看到100% 就表示成功了</p></blockquote><p><img src="image-20220513094643815.png" alt="image-20220513094643815"></p><p>现在进入克隆目录</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> blog<br></code></pre></td></tr></table></figure><p><img src="image-20220513093934096.png" alt="image-20220513093934096"></p><p>克隆子项目<code>git submodule update --init --recursive</code></p><p><img src="image-20220513094748529.png" alt="image-20220513094748529"></p><p>现在安装依赖<code> npm install</code></p><p><img src="image-20220513095055192.png" alt="image-20220513095055192"></p><p>现在在命令行输入 <code>start .</code></p><p><img src="image-20220513093954383.png" alt="image-20220513093954383"></p><p>看到以下界面</p><p><img src="image-20220513094013505.png" alt="image-20220513094013505"></p><h1 id="vscode打开目录-运行服务"><a href="#vscode打开目录-运行服务" class="headerlink" title="vscode打开目录, 运行服务"></a>vscode打开目录, 运行服务</h1><p>回到上一级目录，<code>blog</code>目录, 右键 <strong>通过 Code</strong> 打开</p><p><img src="image-20220513094214889.png" alt="image-20220513094214889"></p><p>进入到以下界面</p><p><img src="image-20220513094228729.png" alt="image-20220513094228729"></p><p>现在安装插件, 并退出vscode程序，之后重新 <code>blog</code>目录, 右键 <strong>通过 Code</strong> 打开</p><p><img src="image-20220513094320097.png" alt="image-20220513094320097"></p><p>现在快捷键 <strong>ctrl + shift + `</strong>  运行  <strong>npx hexo s</strong> </p><p><img src="image-20220513095212339.png" alt="image-20220513095212339"></p><p>访问本地的4000 <a href="http://localhost:4000/">http://localhost:4000/</a></p><p><img src="image-20220513095237808.png" alt="image-20220513095237808"></p><h1 id="github准备"><a href="#github准备" class="headerlink" title="github准备"></a>github准备</h1><h2 id="准备github仓库"><a href="#准备github仓库" class="headerlink" title="准备github仓库"></a>准备github仓库</h2><p>查看自己的账号名 , 我的为 <code>slcnx</code></p><p><img src="image-20220513095332738.png" alt="image-20220513095332738"></p><p>新建仓库  <code>slcnx.github.io</code> 格式是<code>用户名.github.io</code></p><p><img src="image-20220513095640820.png" alt="image-20220513095640820"></p><p><img src="image-20220513095652519.png" alt="image-20220513095652519"></p><h2 id="添加一个测试文件"><a href="#添加一个测试文件" class="headerlink" title="添加一个测试文件"></a>添加一个测试文件</h2><p><img src="image-20220513095752726.png" alt="image-20220513095752726"></p><p>一定要添加<code>index.html</code></p><p><img src="image-20220513095822054.png" alt="image-20220513095822054"></p><p>添加之后，刷新网页，过3分钟的样子，右下角出现 active</p><p><img src="image-20220513095942064.png" alt="image-20220513095942064"></p><p>访问网页 <a href="https://slcnx.github.io/">https://slcnx.github.io</a>  <code>用户名.github.io</code></p><p><img src="image-20220513100016239.png" alt="image-20220513100016239"></p><p>现在表示github.com已经正常</p><h2 id="配置github"><a href="#配置github" class="headerlink" title="配置github"></a>配置github</h2><p><img src="image-20220513100103791.png" alt="image-20220513100103791"></p><p><img src="image-20220513100129679.png" alt="image-20220513100129679"></p><p>现在需要生成一个公钥和密钥<code>ssh-keygen -t rsa -b 4096 -f id_rsa_2048 -P &#39;&#39;</code> 命令一定要对</p><blockquote><p>此处一定要在<code>Linux</code>主机上生成。之后下载 id_rsa_2048 id_rsa_2048.pub 到本地 博客blog目录</p></blockquote><p>vscode中查看公钥，复制公钥</p><p><img src="image-20220513100509093.png" alt="image-20220513100509093"></p><p><img src="image-20220513100606627.png" alt="image-20220513100606627"></p><p>看到以下内容表示OK</p><p><img src="image-20220513100630996.png" alt="image-20220513100630996"></p><h2 id="获取github的ssh地址"><a href="#获取github的ssh地址" class="headerlink" title="获取github的ssh地址"></a>获取github的ssh地址</h2><p><img src="image-20220513100825116.png" alt="image-20220513100825116"> </p><p><code>git@github.com:slcnx/slcnx.github.io.git</code> </p><p>有docker的同学可以, 可以运行以下命令验证是否正常。<b style="color: red;">没有docker的同学，就不需要执行以下命令</b></p><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">docker build <span class="hljs-attr">--build-arg</span> GITHUB=git@github<span class="hljs-selector-class">.com</span>:slcnx/slcnx<span class="hljs-selector-class">.github</span><span class="hljs-selector-class">.io</span><span class="hljs-selector-class">.git</span> <span class="hljs-attr">--build-arg</span> EMAIL=<span class="hljs-string">&#x27;2192383945@qq.com&#x27;</span> <span class="hljs-attr">--build-arg</span> GUSER=<span class="hljs-string">&#x27;songliangcheng&#x27;</span> ./<br></code></pre></td></tr></table></figure><h1 id="codeup准备"><a href="#codeup准备" class="headerlink" title="codeup准备"></a>codeup准备</h1><h2 id="准备codeup仓库"><a href="#准备codeup仓库" class="headerlink" title="准备codeup仓库"></a>准备codeup仓库</h2><p><img src="image-20220513101358650.png" alt="image-20220513101358650"></p><p><img src="image-20220513101431944.png" alt="image-20220513101431944"></p><p>获取https地址 <code>https://codeup.aliyun.com/5f73e5a3728df4b180fab5ca/myblog-2022-05-13.git</code></p><p><img src="image-20220513101457691.png" alt="image-20220513101457691"></p><h2 id="本地推送代码"><a href="#本地推送代码" class="headerlink" title="本地推送代码"></a>本地推送代码</h2><p>先在blog目录中， 即进入CMD中，在blog目录中</p><figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dsconfig"><span class="hljs-string">git</span> <span class="hljs-string">remote</span> <span class="hljs-built_in">set-url</span> <span class="hljs-string">origin</span> <span class="hljs-string">https</span>://<span class="hljs-string">codeup</span>.<span class="hljs-string">aliyun</span>.<span class="hljs-string">com</span>/<span class="hljs-string">5f73e5a3728df4b180fab5ca</span>/<span class="hljs-string">myblog-2022-05-14</span>.<span class="hljs-string">git</span><br></code></pre></td></tr></table></figure><p><img src="image-20220513101730325.png" alt="image-20220513101730325"></p><p>推送代码, 双击push.sh</p><p><img src="image-20220513101816443.png" alt="image-20220513101816443"></p><p>代码仓库, 已经有数据了</p><p><img src="image-20220513101839833.png" alt="image-20220513101839833"></p><h2 id="添加流水线"><a href="#添加流水线" class="headerlink" title="添加流水线"></a>添加流水线</h2><h3 id="进入流水线页面"><a href="#进入流水线页面" class="headerlink" title="进入流水线页面"></a>进入流水线页面</h3><p><img src="image-20220513101902870.png" alt="image-20220513101902870"></p><p><img src="image-20220513101910710.png" alt="image-20220513101910710"></p><p><img src="image-20220513101941108.png" alt="image-20220513101941108"></p><h3 id="配置流水线"><a href="#配置流水线" class="headerlink" title="配置流水线"></a>配置流水线</h3><p>因为代码中有submodule, 就启用</p><p><img src="image-20220513102015626.png" alt="image-20220513102015626"></p><p>定义构建镜像</p><p><img src="image-20220513102242848.png" alt="image-20220513102242848"></p><p><img src="image-20220513102317624.png" alt="image-20220513102317624"></p><p>配置构建参考，<strong>非常关键</strong>, 这里有3个参数</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">EMAIL       你的QQ邮箱 <br>GUSER       你的用户名，任意<br>GITHUB      这里一定是你上面github创建的仓库的ssh地址，参考4.4获取githubssh地址。我的为 git@github.com:slcnx/slcnx.github.io.git<br></code></pre></td></tr></table></figure><p><img src="image-20220513103303012.png" alt="image-20220513103303012"></p><p>不需要发布所以删除kubernetes</p><p><img src="image-20220513102349111.png" alt="image-20220513102349111"></p><p>保存并运行</p><p><img src="image-20220513102407557.png" alt="image-20220513102407557"></p><h3 id="运行流水线"><a href="#运行流水线" class="headerlink" title="运行流水线"></a>运行流水线</h3><p><img src="image-20220513102417620.png" alt="image-20220513102417620"></p><h3 id="查看日志"><a href="#查看日志" class="headerlink" title="查看日志"></a>查看日志</h3><p><img src="image-20220513102440868.png" alt="image-20220513102440868"></p><p><img src="image-20220513103852668.png" alt="image-20220513103852668"></p><h3 id="查看github-com"><a href="#查看github-com" class="headerlink" title="查看github.com"></a>查看github.com</h3><p><img src="image-20220513103918387.png" alt="image-20220513103918387"></p><h1 id="查看网页"><a href="#查看网页" class="headerlink" title="查看网页"></a>查看网页</h1><p><a href="https://slcnx.github.io/">https://slcnx.github.io/</a></p><p><img src="image-20220513102518346.png" alt="image-20220513102518346"></p><h1 id="写新的文章"><a href="#写新的文章" class="headerlink" title="写新的文章"></a>写新的文章</h1><h2 id="添加文章"><a href="#添加文章" class="headerlink" title="添加文章"></a>添加文章</h2><p>运行<code>addarticle.sh</code>脚本, 写标题  <strong>第3个文章</strong></p><p><img src="image-20220513102558031.png" alt="image-20220513102558031"></p><p>会自动弹出博客编写页面 编写<strong>第3个文章</strong></p><p><img src="image-20220513103034036.png" alt="image-20220513103034036"></p><p><img src="image-20220513103100965.png" alt="image-20220513103100965"></p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-meta">---</span><br><span class="hljs-attr">title:</span> <span class="hljs-string">第3个文章</span><br><span class="hljs-attr">tags:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">linux</span><br><span class="hljs-attr">categories:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">hexo</span><br><span class="hljs-attr">date:</span> <span class="hljs-number">2022-05-13 10:26:14</span><br><span class="hljs-meta">---</span><br><span class="hljs-meta"></span><br><span class="hljs-comment"># 背景</span><br><br><span class="hljs-string">hello</span><br><br><span class="hljs-type">![image</span><span class="hljs-number">-20220513102937310</span><span class="hljs-string">](第3个文章/image-20220513102937310.png)</span><br><br><span class="hljs-string">&lt;!--more--&gt;</span><br></code></pre></td></tr></table></figure><h2 id="发布文章"><a href="#发布文章" class="headerlink" title="发布文章"></a>发布文章</h2><p>运行push.sh脚本</p><p><img src="image-20220513102729742.png" alt="image-20220513102729742"></p><h2 id="查看网页-1"><a href="#查看网页-1" class="headerlink" title="查看网页"></a>查看网页</h2><p><img src="image-20220513104016387.png" alt="image-20220513104016387"></p><h1 id="自定义网页样式"><a href="#自定义网页样式" class="headerlink" title="自定义网页样式"></a>自定义网页样式</h1><p><a href="https://slcnx.github.io/2022/05/12/%E5%85%8D%E8%B4%B9%E6%90%9E%E7%BD%91%E7%AB%99-gitpages/#%E5%BC%80%E5%8F%91%E6%96%B9%E5%BC%8F">本地开发</a></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>git</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  
+</search>
