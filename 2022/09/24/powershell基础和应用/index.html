@@ -1,0 +1,825 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="书 这本书，重点是教会我们如何 通过自学掌握所有这些可以通过 PowerShell 操作的服务器级别产品。Exchange Server、SQL Server、System Center 而不是告诉我们每个产品怎么使用 自学的技巧不要害怕失败，希望你有一台虚拟机，然后在虚拟里实验 PowerShell。学生们经常会问类似这类问题：“如果我做了这个和那个，会发生什么？”我们的回答往往是“不知道，自己">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Powershell基础和应用">
+<meta property="og:url" content="http://example.com/2022/09/24/powershell%E5%9F%BA%E7%A1%80%E5%92%8C%E5%BA%94%E7%94%A8/index.html">
+<meta property="og:site_name" content="my blog">
+<meta property="og:description" content="书 这本书，重点是教会我们如何 通过自学掌握所有这些可以通过 PowerShell 操作的服务器级别产品。Exchange Server、SQL Server、System Center 而不是告诉我们每个产品怎么使用 自学的技巧不要害怕失败，希望你有一台虚拟机，然后在虚拟里实验 PowerShell。学生们经常会问类似这类问题：“如果我做了这个和那个，会发生什么？”我们的回答往往是“不知道，自己">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2022/09/24/powershell%E5%9F%BA%E7%A1%80%E5%92%8C%E5%BA%94%E7%94%A8/2022-09-23-10-40-23-image.png">
+<meta property="og:image" content="http://example.com/2022/09/24/powershell%E5%9F%BA%E7%A1%80%E5%92%8C%E5%BA%94%E7%94%A8/2022-09-23-10-46-59-image.png">
+<meta property="og:image" content="http://example.com/2022/09/24/powershell%E5%9F%BA%E7%A1%80%E5%92%8C%E5%BA%94%E7%94%A8/2022-09-23-11-16-12-image.png">
+<meta property="og:image" content="http://example.com/2022/09/24/powershell%E5%9F%BA%E7%A1%80%E5%92%8C%E5%BA%94%E7%94%A8/2022-09-23-12-26-43-image.png">
+<meta property="og:image" content="http://example.com/2022/09/24/powershell%E5%9F%BA%E7%A1%80%E5%92%8C%E5%BA%94%E7%94%A8/2022-09-23-14-06-14-image.png">
+<meta property="article:published_time" content="2022-09-24T20:04:39.000Z">
+<meta property="article:modified_time" content="2022-12-03T04:48:46.193Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2022/09/24/powershell%E5%9F%BA%E7%A1%80%E5%92%8C%E5%BA%94%E7%94%A8/2022-09-23-10-40-23-image.png">
+  
+  
+  <title>Powershell基础和应用 - my blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":21348977,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Powershell基础和应用">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-09-24 20:04" pubdate>
+        September 24, 2022 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      31k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      261 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Powershell基础和应用</h1>
+            
+            <div class="markdown-body">
+              <h1 id="书"><a href="#书" class="headerlink" title="书"></a>书</h1><p><img src="2022-09-23-10-40-23-image.png" srcset="/img/loading.gif" lazyload alt="2022-09-23-10-40-23-image"></p>
+<p>这本书，重点是教会我们如何 通过自学掌握所有这些可以通过 PowerShell 操作的服务器级别产品。Exchange Server、SQL Server、System Center</p>
+<p>而不是告诉我们每个产品怎么使用</p>
+<h1 id="自学的技巧"><a href="#自学的技巧" class="headerlink" title="自学的技巧"></a>自学的技巧</h1><p>不要害怕失败，希望你有一台虚拟机，然后在虚拟里实验 PowerShell。学生们经常会问类似这类问题：“如果我做了这个和那个，会发生什么？”我们的回答往往是“不知道，自己试试”。在虚拟机做实验是一个好办法，最坏的情况也只不过是将虚拟机回滚到某个快照点，对吧？所以无论做什么，都请试一试。</p>
+<p>不要害怕使用帮助并确保阅读示例。我们不止一次强调过这一点，但好像没人愿意听。我们仍然会看到很多学生在我们眼皮底下使用 Google 寻找示例。为什么那么害怕帮助文档？如果你都愿意读别人的博客了，为什么不先尝试在帮助文档中阅读示例？</p>
+<p>请注意，在屏幕上，每一点信息可能都非常重要——请不要跳过不是你目前正在寻找的信息。你很容易这样做，但请不要这么做。要查看每一部分信息，并尝试发现该信息的用处，以及使用该信息能够推算出什么。</p>
+<p>如果尝试一种方法不奏效，不要挠墙——请尝试其他方法。</p>
+<h1 id="终端"><a href="#终端" class="headerlink" title="终端"></a>终端</h1><p><img src="2022-09-23-10-46-59-image.png" srcset="/img/loading.gif" lazyload alt="2022-09-23-10-46-59-image"></p>
+<p><code>PS C:\Windows\system32&gt;</code></p>
+<p>PS: powershell， 后面是当前工作目录</p>
+<h1 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h1><h2 id="认识命令"><a href="#认识命令" class="headerlink" title="认识命令"></a>认识命令</h2><p>powershell 中叫 cmdlet，例如一个简单的列出当前目录下的所有文件</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></div></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">PS</span> C:\Windows\system32&gt; <span class="hljs-built_in">cd</span> c:/<br><span class="hljs-built_in">PS</span> C:\&gt; <span class="hljs-built_in">ls</span><br><br><br>    目录: C:\<br><br><br>Mode                 LastWriteTime         Length Name<br><span class="hljs-literal">----</span>                 <span class="hljs-literal">-------------</span>         <span class="hljs-literal">------</span> <span class="hljs-literal">----</span><br>d<span class="hljs-literal">-----</span>         <span class="hljs-number">2022</span>/<span class="hljs-number">9</span>/<span class="hljs-number">19</span>      <span class="hljs-number">9</span>:<span class="hljs-number">22</span>                <span class="hljs-number">2020</span><span class="hljs-literal">-09-16-myblog</span><br>d<span class="hljs-literal">-----</span>         <span class="hljs-number">2022</span>/<span class="hljs-number">4</span>/<span class="hljs-number">29</span>     <span class="hljs-number">13</span>:<span class="hljs-number">48</span>                pcwlenv<br>d<span class="hljs-literal">-r---</span>         <span class="hljs-number">2022</span>/<span class="hljs-number">9</span>/<span class="hljs-number">21</span>      <span class="hljs-number">8</span>:<span class="hljs-number">43</span>                Program Files<br>d<span class="hljs-literal">-r---</span>         <span class="hljs-number">2022</span>/<span class="hljs-number">7</span>/<span class="hljs-number">14</span>      <span class="hljs-number">9</span>:<span class="hljs-number">30</span>                Program Files (x86)<br>d<span class="hljs-literal">-----</span>         <span class="hljs-number">2022</span>/<span class="hljs-number">7</span>/<span class="hljs-number">19</span>      <span class="hljs-number">8</span>:<span class="hljs-number">34</span>                Temp<br>d<span class="hljs-literal">-r---</span>         <span class="hljs-number">2022</span>/<span class="hljs-number">9</span>/<span class="hljs-number">21</span>     <span class="hljs-number">12</span>:<span class="hljs-number">27</span>                Users<br>d<span class="hljs-literal">-----</span>         <span class="hljs-number">2022</span>/<span class="hljs-number">7</span>/<span class="hljs-number">29</span>      <span class="hljs-number">8</span>:<span class="hljs-number">21</span>                Windows<br><span class="hljs-literal">-a----</span>         <span class="hljs-number">2022</span>/<span class="hljs-number">4</span>/<span class="hljs-number">29</span>     <span class="hljs-number">13</span>:<span class="hljs-number">42</span>              <span class="hljs-number">0</span> dcdspdbg.log<br><span class="hljs-literal">-a----</span>         <span class="hljs-number">2022</span>/<span class="hljs-number">7</span>/<span class="hljs-number">12</span>     <span class="hljs-number">11</span>:<span class="hljs-number">31</span>          <span class="hljs-number">12288</span> DumpStack.log<br><span class="hljs-literal">-a----</span>         <span class="hljs-number">2022</span>/<span class="hljs-number">8</span>/<span class="hljs-number">11</span>     <span class="hljs-number">12</span>:<span class="hljs-number">56</span>           <span class="hljs-number">2637</span> priv.pfx<br><br><br><span class="hljs-built_in">PS</span> C:\&gt; <span class="hljs-built_in">ls</span> <span class="hljs-literal">-name</span><br><span class="hljs-number">2020</span><span class="hljs-literal">-09-16-myblog</span><br>pcwlenv<br>Program Files<br>Program Files (x86)<br>Temp<br>Users<br>Windows<br>dcdspdbg.log<br>DumpStack.log<br>priv.pfx<br></code></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">PS</span> C:\&gt; <span class="hljs-built_in">Get-ChildItem</span><br><br><br>    目录: C:\<br><br><br>Mode                 LastWriteTime         Length Name<br><span class="hljs-literal">----</span>                 <span class="hljs-literal">-------------</span>         <span class="hljs-literal">------</span> <span class="hljs-literal">----</span><br>d<span class="hljs-literal">-----</span>         <span class="hljs-number">2022</span>/<span class="hljs-number">9</span>/<span class="hljs-number">19</span>      <span class="hljs-number">9</span>:<span class="hljs-number">22</span>                <span class="hljs-number">2020</span><span class="hljs-literal">-09-16-myblog</span><br>d<span class="hljs-literal">-----</span>         <span class="hljs-number">2022</span>/<span class="hljs-number">4</span>/<span class="hljs-number">29</span>     <span class="hljs-number">13</span>:<span class="hljs-number">48</span>                pcwlenv<br>d<span class="hljs-literal">-r---</span>         <span class="hljs-number">2022</span>/<span class="hljs-number">9</span>/<span class="hljs-number">21</span>      <span class="hljs-number">8</span>:<span class="hljs-number">43</span>                Program Files<br>d<span class="hljs-literal">-r---</span>         <span class="hljs-number">2022</span>/<span class="hljs-number">7</span>/<span class="hljs-number">14</span>      <span class="hljs-number">9</span>:<span class="hljs-number">30</span>                Program Files (x86)<br>d<span class="hljs-literal">-----</span>         <span class="hljs-number">2022</span>/<span class="hljs-number">7</span>/<span class="hljs-number">19</span>      <span class="hljs-number">8</span>:<span class="hljs-number">34</span>                Temp<br>d<span class="hljs-literal">-r---</span>         <span class="hljs-number">2022</span>/<span class="hljs-number">9</span>/<span class="hljs-number">21</span>     <span class="hljs-number">12</span>:<span class="hljs-number">27</span>                Users<br>d<span class="hljs-literal">-----</span>         <span class="hljs-number">2022</span>/<span class="hljs-number">7</span>/<span class="hljs-number">29</span>      <span class="hljs-number">8</span>:<span class="hljs-number">21</span>                Windows<br><span class="hljs-literal">-a----</span>         <span class="hljs-number">2022</span>/<span class="hljs-number">4</span>/<span class="hljs-number">29</span>     <span class="hljs-number">13</span>:<span class="hljs-number">42</span>              <span class="hljs-number">0</span> dcdspdbg.log<br><span class="hljs-literal">-a----</span>         <span class="hljs-number">2022</span>/<span class="hljs-number">7</span>/<span class="hljs-number">12</span>     <span class="hljs-number">11</span>:<span class="hljs-number">31</span>          <span class="hljs-number">12288</span> DumpStack.log<br><span class="hljs-literal">-a----</span>         <span class="hljs-number">2022</span>/<span class="hljs-number">8</span>/<span class="hljs-number">11</span>     <span class="hljs-number">12</span>:<span class="hljs-number">56</span>           <span class="hljs-number">2637</span> priv.pfx<br><br><br><span class="hljs-built_in">PS</span> C:\&gt; <span class="hljs-built_in">Get-ChildItem</span> <span class="hljs-literal">-Name</span><br><span class="hljs-number">2020</span><span class="hljs-literal">-09-16-myblog</span><br>pcwlenv<br>Program Files<br>Program Files (x86)<br>Temp<br>Users<br>Windows<br>dcdspdbg.log<br>DumpStack.log<br>priv.pfx<br></code></pre></td></tr></table></figure>
+
+<p>注意，这里，可以发现命令<code>ls</code> 和 <code>Get-ChildItem</code>是一样的作用，这里和 Linux 不一样</p>
+<ol>
+<li><p>windows 中，为了兼容 linux 命令，部分与 linux 一样的命令, 例如 ls, 只是 windows 命令的别名（windows 别名只能引用命令本身，不能引用命令+选项。ls 只能对应 get-childitem）</p>
+</li>
+<li><p>windows 中， 字符不区分大小写。LS, Ls, lS, 均是 ls 命令。get-childitem 还是 Get-CHILDITEM 均一样。为了方便书写，统一小写。</p>
+</li>
+<li><p>windows 中也支持 tab 键补全命令，选项，目录路径</p>
+</li>
+<li><p>windows 中终端也支持 ctrl + a, ctrl + e, ctrl + l。需要打开终端功能。<code>Set-PSReadLineOption -EditMode emacs</code>, 这个命令在会话中执行只是当前会话有效，终端重启之后就无效了，所以需要写在配置文件中，windows 在会话启动时，会读取的配置文件. <code>$PSHOME -&gt; $PROFILE</code></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$PSHOME</span><br>profile.ps1<br>Microsoft.PowerShell_profile.ps1<br><br>(<span class="hljs-built_in">SPLIT-PATH</span> <span class="hljs-variable">$PROFILE</span>)<br>profile.ps1<br>Microsoft.PowerShell_profile.ps1<br><br><span class="hljs-comment"># 验证方式</span><br><br><span class="hljs-comment">## 会话启动时，定义变量</span><br><br>  <span class="hljs-built_in">set-content</span> <span class="hljs-variable">$PSHOME</span>/Microsoft.PowerShell_profile.ps1 <span class="hljs-literal">-value</span> <span class="hljs-string">&quot;&#x27;PSHOME MPS&#x27;`n[System.Environment]::SetEnvironmentVariable(&#x27;PATH&#x27;,`$Env:PATH+&#x27;;;C:\Users\slc\apps\go-ipfs-v0.12.2\go-ipfs&#x27;)&quot;</span><br><br><span class="hljs-comment">## 会话启动时，定义别名。</span><br><br>  <span class="hljs-built_in">set-content</span> <span class="hljs-variable">$PSHOME</span>/profile.ps1 <span class="hljs-literal">-value</span> <span class="hljs-string">&quot;&#x27;PSHOME PS&#x27;`nNew-Alias ifconfig ipconfig&quot;</span><br><br><span class="hljs-comment">## 会话启动时，定义变量</span><br><br>  <span class="hljs-built_in">set-content</span> <span class="hljs-string">&quot;<span class="hljs-variable">$</span>(Split-Path <span class="hljs-variable">$PROFILE</span> -Parent)/Microsoft.PowerShell_profile.ps1&quot;</span> <span class="hljs-literal">-value</span> <span class="hljs-string">&quot;&#x27;profile MPS&#x27;`n[System.Environment]::SetEnvironmentVariable(&#x27;PATH&#x27;,`$Env:PATH+&#x27;;;C:\Users\slc\apps\go-ipfs-v0.12.2\go-ipfs&#x27;)&quot;</span><br><br><span class="hljs-comment">## 会话启动时，也可以定义PS提示符变量，运行命令等等</span><br><br>  <span class="hljs-built_in">set-content</span> <span class="hljs-string">&quot;<span class="hljs-variable">$</span>(Split-Path <span class="hljs-variable">$PROFILE</span> -Parent)/profile.ps1&quot;</span> <span class="hljs-literal">-value</span> <span class="hljs-string">&quot;&#x27;profile PS&#x27;`nSet-PSReadLineOption -EditMode emacs`nfunction prompt() &#123; (get-date).ToShortTimeString() + &#x27; [PS] &#x27; + (Get-Location) + &#x27; :&gt;  &#x27; &#125;`nNew-NetFirewallRule -DisplayName &#x27;9000 django test&#x27; -Direction Inbound -LocalPort 9000 -Protocol tcp -Action  Allow`n&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="2022-09-23-11-16-12-image.png" srcset="/img/loading.gif" lazyload alt="2022-09-23-11-16-12-image"></p>
+</li>
+<li><p>由 4 中给配置文件，会话启动前会加载一些文件.</p>
+</li>
+</ol>
+<p>我们配置配置环境变量时，引用当前命令读的环境变量不是<code>$path</code> 而是<code>$env:path</code></p>
+<p>我们在文本中，需要换行，linux 是<code>\n, \e, \t</code> 。windows 对应</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs powershell">`n<br>`e<br>`t<br>...<br></code></pre></td></tr></table></figure>
+
+<p>从以上示例，我们可以看出 windows 命令的格式</p>
+<p><code>Get-ChildItem -Name</code></p>
+<ul>
+<li><p>命令: get-childitem, 动词-名词</p>
+<ul>
+<li>获取 windows 支持哪些动作<code>get-verb</code>, 常用的动作就是 C （new) U (set) R (get) D (remove)</li>
+</ul>
+</li>
+<li><p>选项: -name, 帮助中获取</p>
+</li>
+</ul>
+<h2 id="命令帮助"><a href="#命令帮助" class="headerlink" title="命令帮助"></a>命令帮助</h2><p>如何知道 windows 上有哪些命令，<code>show-command</code>,会显示所有模块所有命令。</p>
+<p>搜索命令, powershell 有文档维护自己的所有命令和模块对应的命令。即使你的系统没有安装这个命令，我们也可以搜索到命令及帮助。</p>
+<p>首先，一个系统我们需要安装帮助文件，或者是系统的帮助文件是需要定时更新的。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">Update-Help</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>帮助可以自己手工联网更新，也可以离线更新。</p>
+</blockquote>
+<p>更新帮助后，我们可以搜索一些命令相关的帮助的主题。例如：</p>
+<blockquote>
+<p>user, privilege 权限，process 进程，net 网络，常用的关键字</p>
+</blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># 进程相关</span><br><span class="hljs-number">12</span>:<span class="hljs-number">13</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  help *<span class="hljs-keyword">process</span>*<br><br>Name                              Category  Module                    Synopsis<br><span class="hljs-literal">----</span>                              <span class="hljs-literal">--------</span>  <span class="hljs-literal">------</span>                    <span class="hljs-literal">--------</span><br><span class="hljs-built_in">Enter-PSHostProcess</span>               Cmdlet    Microsoft.PowerShell.Core Connects to and enters into an interactive session with a local <span class="hljs-keyword">process</span>.<br><span class="hljs-built_in">Exit-PSHostProcess</span>                Cmdlet    Microsoft.PowerShell.Core Closes an interactive session with a local <span class="hljs-keyword">process</span>.<br><span class="hljs-built_in">Get-PSHostProcessInfo</span>             Cmdlet    Microsoft.PowerShell.Core Gets <span class="hljs-keyword">process</span> information about the PowerShell host.<br><span class="hljs-built_in">Debug-Process</span>                     Cmdlet    Microsoft.PowerShell.M... Debugs one or more processes running on the local computer.<br><span class="hljs-built_in">Get-Process</span>                       Cmdlet    Microsoft.PowerShell.M... Gets the processes that are running on the local computer or a remote computer.<br><span class="hljs-built_in">Start-Process</span>                     Cmdlet    Microsoft.PowerShell.M... Starts one or more processes on the local computer.<br><span class="hljs-built_in">Stop-Process</span>                      Cmdlet    Microsoft.PowerShell.M... Stops one or more running processes.<br><span class="hljs-built_in">Wait-Process</span>                      Cmdlet    Microsoft.PowerShell.M... Waits <span class="hljs-keyword">for</span> the processes to be stopped before accepting more input.<br><span class="hljs-built_in">Get-AppvVirtualProcess</span>            <span class="hljs-function"><span class="hljs-keyword">Function</span>  <span class="hljs-title">AppvClient</span>                ...</span><br><span class="hljs-built_in">Start-AppvVirtualProcess</span>          <span class="hljs-function"><span class="hljs-keyword">Function</span>  <span class="hljs-title">AppvClient</span>                ...</span><br><span class="hljs-built_in">ConvertTo-ProcessMitigationPolicy</span> Cmdlet    ProcessMitigations        <span class="hljs-built_in">ConvertTo-ProcessMitigationPolicy</span>...<br><span class="hljs-built_in">Get-ProcessMitigation</span>             Cmdlet    ProcessMitigations        <span class="hljs-built_in">Get-ProcessMitigation</span>...<br><span class="hljs-built_in">Set-ProcessMitigation</span>             Cmdlet    ProcessMitigations        <span class="hljs-built_in">Set-ProcessMitigation</span>...<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>name, process 相关的命令</p>
+</li>
+<li><p>category，命令类型。windows 中一般有 cmdlet 命令，函数命令，….</p>
+<ul>
+<li><p>cmdlet 命令，原生的 ps 命令，由.net 编写，google 搜索 cmdlet 关键字，返回结果主要关于 powershell 的。</p>
+</li>
+<li><p>Function 函数，其实使用方式和 cmdlet 命令一样，只是不由.net 编写，而且 powershell 自己的脚本语言编写。</p>
+</li>
+<li><p>Application: windows 的应用程序</p>
+</li>
+</ul>
+</li>
+<li><p>Module，命令属于哪些模块</p>
+<ul>
+<li><p>查看所有模块 <code>Get-Module -ListAvailable</code> ，查看安装的模块<code>Get-Module</code></p>
+<p>命令是属于模块的，所以安装的模块对应的命令就是我们可以使用的 cmdlet 命令。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">12</span>:<span class="hljs-number">48</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">Get-Module</span><br><br>ModuleType Version    Name                                ExportedCommands<br><span class="hljs-literal">----------</span> <span class="hljs-literal">-------</span>    <span class="hljs-literal">----</span>                                <span class="hljs-literal">----------------</span><br>Manifest   <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management     &#123;<span class="hljs-built_in">Add-Computer</span>, <span class="hljs-built_in">Add-Content</span>, <span class="hljs-built_in">Checkpoint-Computer</span>, <span class="hljs-built_in">Clear-Content</span>...&#125;<br>Manifest   <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Utility        &#123;<span class="hljs-built_in">Add-Member</span>, <span class="hljs-built_in">Add-Type</span>, <span class="hljs-built_in">Clear-Variable</span>, <span class="hljs-built_in">Compare-Object</span>...&#125;<br>Manifest   <span class="hljs-number">2.0</span>.<span class="hljs-number">0.0</span>    NetSecurity                         &#123;<span class="hljs-built_in">Get-DAPolicyChange</span>, <span class="hljs-built_in">New-NetIPsecAuthProposal</span>, <span class="hljs-built_in">New-NetIPsecMainModeCryptoProposal</span>, <span class="hljs-built_in">New-NetIPsecQuickModeCryptoProposal</span>...&#125;<br>Script     <span class="hljs-number">2.0</span>.<span class="hljs-number">0</span>      PSReadline                          &#123;<span class="hljs-built_in">Get-PSReadLineKeyHandler</span>, <span class="hljs-built_in">Get-PSReadLineOption</span>, <span class="hljs-built_in">Remove-PSReadLineKeyHandler</span>, <span class="hljs-built_in">Set-PSReadLineKeyHandler</span>...&#125;<br></code></pre></td></tr></table></figure>
+
+<p>12:49 [PS] C:\Windows\system32 :&gt; Get-Command -Module Microsoft.PowerShell.Management</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs"><br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>Synops，就是描述。</p>
+</li>
+</ul>
+<p>现在我们可以看到，动作及命令，我们现在需要看看有哪些进程</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs powershell"> <span class="hljs-built_in">Get-Process</span><br> Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id  <span class="hljs-built_in">SI</span> ProcessName<br><span class="hljs-literal">-------</span>  <span class="hljs-literal">------</span>    <span class="hljs-literal">-----</span>      <span class="hljs-literal">-----</span>     <span class="hljs-literal">------</span>     <span class="hljs-literal">--</span>  <span class="hljs-literal">--</span> <span class="hljs-literal">-----------</span><br>    <span class="hljs-number">424</span>      <span class="hljs-number">33</span>    <span class="hljs-number">18192</span>      <span class="hljs-number">21976</span>      <span class="hljs-number">14.94</span>  <span class="hljs-number">12280</span>   <span class="hljs-number">1</span> <span class="hljs-number">360</span>EntMsgCenter<br>   <span class="hljs-number">3167</span>     <span class="hljs-number">235</span>   <span class="hljs-number">448632</span>      <span class="hljs-number">73704</span>     <span class="hljs-number">571.95</span>   <span class="hljs-number">9948</span>   <span class="hljs-number">1</span> <span class="hljs-number">360</span>tray<br>    <span class="hljs-number">284</span>      <span class="hljs-number">14</span>    <span class="hljs-number">15136</span>      <span class="hljs-number">19204</span>      <span class="hljs-number">93.17</span>   <span class="hljs-number">5236</span>   <span class="hljs-number">0</span> audiodg<br>    <span class="hljs-number">345</span>      <span class="hljs-number">26</span>    <span class="hljs-number">29412</span>      <span class="hljs-number">32084</span>       <span class="hljs-number">0.19</span>   <span class="hljs-number">5172</span>   <span class="hljs-number">1</span> CefSharp.BrowserSubprocess<br>    <span class="hljs-number">481</span>      <span class="hljs-number">32</span>   <span class="hljs-number">124300</span>      <span class="hljs-number">38740</span>       <span class="hljs-number">0.22</span>  <span class="hljs-number">12404</span>   <span class="hljs-number">1</span> CefSharp.BrowserSubprocess<br></code></pre></td></tr></table></figure>
+
+<p>如何拿到 notepad 相关的进程？</p>
+<p>linux 中，<code>ps -ef | grep get-process</code> ，对于过滤，我们使用文本处理三剑客 grep/awk/sed，进行过滤处理，即可。 linux 的输出 是文本。</p>
+<p>而 windows 中，过滤，我们不需要这些文本处理工具。他的输出是一个个对象的集合。所以以上 get-process 的输出其实是一行行对象（不看第 1 列），列就是对象的属性。所以过滤其实就是过滤对象的属性值。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># 先启动一个notepad, powershell中运行</span><br>notepad<br><br><span class="hljs-comment"># 过滤对象的属性，这里的name,就是对象的属性。 ?表示匹配， name属性。-match正则匹配。notepad是值</span><br><span class="hljs-number">12</span>:<span class="hljs-number">18</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">Get-Process</span> | ? name <span class="hljs-operator">-Match</span> notepad<br><br>Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id  <span class="hljs-built_in">SI</span> ProcessName<br><span class="hljs-literal">-------</span>  <span class="hljs-literal">------</span>    <span class="hljs-literal">-----</span>      <span class="hljs-literal">-----</span>     <span class="hljs-literal">------</span>     <span class="hljs-literal">--</span>  <span class="hljs-literal">--</span> <span class="hljs-literal">-----------</span><br>    <span class="hljs-number">684</span>      <span class="hljs-number">35</span>    <span class="hljs-number">47252</span>      <span class="hljs-number">65960</span>       <span class="hljs-number">0.48</span>  <span class="hljs-number">17848</span>   <span class="hljs-number">1</span> Notepad<br>    <span class="hljs-number">676</span>      <span class="hljs-number">35</span>    <span class="hljs-number">47476</span>      <span class="hljs-number">60208</span>       <span class="hljs-number">1.27</span>  <span class="hljs-number">21288</span>   <span class="hljs-number">1</span> Notepad<br><br><br><span class="hljs-comment"># 如何知道这1行行对象的属性有哪些 ？</span><br><span class="hljs-number">12</span>:<span class="hljs-number">19</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">Get-Process</span> | <span class="hljs-built_in">gm</span><br><br><br>   TypeName:System.Diagnostics.Process<br><br>Name                       MemberType     Definition<br><span class="hljs-literal">----</span>                       <span class="hljs-literal">----------</span>     <span class="hljs-literal">----------</span><br>Handles                    AliasProperty  Handles = Handlecount<br>Name                       AliasProperty  Name = ProcessName<br></code></pre></td></tr></table></figure>
+
+<p>过滤某个进程，可以按对象过滤，还有一种方式，就是命令自带的过滤。一般 windows 命令均会自带过滤的参数。</p>
+<p>如何看命令的选项及参数？</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># 命令的帮助</span><br><span class="hljs-comment"># help command</span><br><span class="hljs-number">12</span>:<span class="hljs-number">20</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  help <span class="hljs-built_in">Get-Process</span><br><br>名称<br>    <span class="hljs-built_in">Get-Process</span><br><br>摘要<br>    Gets the processes that are running on the local computer or a remote computer.<br><br><br>语法<br>    <span class="hljs-built_in">Get-Process</span> [[-<span class="hljs-type">Name</span>] &lt;<span class="hljs-type">System.String</span>[]&gt;] [-<span class="hljs-type">ComputerName</span> &lt;<span class="hljs-type">System.String</span>[]&gt;] [-<span class="hljs-type">FileVersionInfo</span>] [-<span class="hljs-type">Module</span>] [&lt;<span class="hljs-type">CommonParameters</span>&gt;]<br><br>    <span class="hljs-built_in">Get-Process</span> [-<span class="hljs-type">ComputerName</span> &lt;<span class="hljs-type">System.String</span>[]&gt;] [-<span class="hljs-type">FileVersionInfo</span>] <span class="hljs-literal">-Id</span> &lt;System.Int32[]&gt; [-<span class="hljs-type">Module</span>] [&lt;<span class="hljs-type">CommonParameters</span>&gt;]<br><br>    <span class="hljs-built_in">Get-Process</span> [-<span class="hljs-type">ComputerName</span> &lt;<span class="hljs-type">System.String</span>[]&gt;] [-<span class="hljs-type">FileVersionInfo</span>] <span class="hljs-literal">-InputObject</span> &lt;System.Diagnostics.Process[]&gt; [-<span class="hljs-type">Module</span>] [&lt;<span class="hljs-type">CommonParameters</span>&gt;]<br><br>    <span class="hljs-built_in">Get-Process</span> <span class="hljs-literal">-Id</span> &lt;System.Int32[]&gt; <span class="hljs-literal">-IncludeUserName</span> [&lt;<span class="hljs-type">CommonParameters</span>&gt;]<br><br>    <span class="hljs-built_in">Get-Process</span> [[-<span class="hljs-type">Name</span>] &lt;<span class="hljs-type">System.String</span>[]&gt;] <span class="hljs-literal">-IncludeUserName</span> [&lt;<span class="hljs-type">CommonParameters</span>&gt;]<br><br>    <span class="hljs-built_in">Get-Process</span> <span class="hljs-literal">-IncludeUserName</span> <span class="hljs-literal">-InputObject</span> &lt;System.Diagnostics.Process[]&gt; [&lt;<span class="hljs-type">CommonParameters</span>&gt;]<br><br><br>说明<br>    The `Get<span class="hljs-literal">-Process</span>` cmdlet gets the processes on a local or remote computer.<br><br>    Without parameters, this cmdlet gets all of the processes on the local computer. You can also specify a particular <span class="hljs-keyword">process</span> by <span class="hljs-keyword">process</span> name or <span class="hljs-keyword">process</span> ID (PID) or pass a <span class="hljs-keyword">process</span> object through the pipeline to this cmdlet.<br><br>    By default, this cmdlet returns a <span class="hljs-keyword">process</span> object that has detailed information about the <span class="hljs-keyword">process</span> and supports methods that let you <span class="hljs-built_in">start</span> and stop the <span class="hljs-keyword">process</span>. You can also use the parameters of the `Get<span class="hljs-literal">-Process</span>` cmdlet to get file v<br>    ersion information <span class="hljs-keyword">for</span> the program that runs <span class="hljs-keyword">in</span> the <span class="hljs-keyword">process</span> and to get the modules that the <span class="hljs-keyword">process</span> loaded.<br><br><br>相关链接<br>    Online Version: https://docs.microsoft.com/powershell/module/microsoft.powershell.management/<span class="hljs-built_in">get-process</span>?view=powershell<span class="hljs-literal">-5</span>.<span class="hljs-number">1</span>&amp;WT.mc_id=<span class="hljs-built_in">ps</span><span class="hljs-literal">-gethelp</span><br>    <span class="hljs-built_in">Debug-Process</span><br>    <span class="hljs-built_in">Get-Process</span><br>    <span class="hljs-built_in">Start-Process</span><br>    <span class="hljs-built_in">Stop-Process</span><br>    <span class="hljs-built_in">Wait-Process</span><br><br>备注<br>    若要查看示例，请键入: <span class="hljs-string">&quot;get-help Get-Process -examples&quot;</span>.<br>    有关详细信息，请键入: <span class="hljs-string">&quot;get-help Get-Process -detailed&quot;</span>.<br>    若要获取技术信息，请键入: <span class="hljs-string">&quot;get-help Get-Process -full&quot;</span>.<br>    有关在线帮助，请键入: <span class="hljs-string">&quot;get-help Get-Process -online&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>在帮助中，我们可以看到有几个段</p>
+<ul>
+<li><p>名称</p>
+</li>
+<li><p>摘要，命令的功能</p>
+</li>
+<li><p>语法，命令的使用方式</p>
+</li>
+<li><p>说明</p>
+</li>
+<li><p>相关链接</p>
+</li>
+<li><p>备注，<strong>获取其他帮助**</strong></p>
+</li>
+</ul>
+<p>这几个段和 Linux 是类似的，一般我们着重看摘要和语法。语法部分，我们只需要注意<code>[]</code> 是可以省略的。<code>&lt;&gt;</code>是必给的。<code>string[]</code>表示数组，元素为一个个字符串。<code>number[]</code>, 数组，元素为一个个数字。<code>[&lt;Common-Parameters&gt;]</code> 表示所有 powershell 命令通用的参数。<code> help about_CommonParameters</code> 这样获取相关的参数。</p>
+<p>还有一个重点，是备注。一般一个命令不会使用，可以以下步骤</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># 看看命令的功能和语法</span><br>help <span class="hljs-built_in">Get-Process</span><br><br><span class="hljs-comment"># 看看命令的示例</span><br>help <span class="hljs-built_in">Get-Process</span> <span class="hljs-literal">-Examples</span><br><br><span class="hljs-comment"># 示例不够详细，也可以看看在线的文档。会自动打开网页，进入命令的帮助页。还是中文</span><br>help <span class="hljs-built_in">Get-Process</span> <span class="hljs-literal">-Online</span><br></code></pre></td></tr></table></figure>
+
+<p>例如，我们看到的在线文档的帮助。这个合作怎么使用，已相当完整了。</p>
+<p><img src="2022-09-23-12-26-43-image.png" srcset="/img/loading.gif" lazyload alt="2022-09-23-12-26-43-image"></p>
+<h2 id="模块命令"><a href="#模块命令" class="headerlink" title="模块命令"></a>模块命令</h2><p>一般使用一个产品，会提供 powershell 相应模块，我们只需要加载模块，就可以看到模块的命令。</p>
+<p>powershell 获取命令帮助的第 2 种方法<code>get-command</code>，他有 2 个可选参数对应动作<code>-verb</code>, 名称<code>-noun</code> 支持通配。帮助的种类<code>-CommandType</code>。哪些模块<code>-module</code></p>
+<p>先看看帮助<code>help get-command</code></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">Get-Command</span> [[-<span class="hljs-type">Name</span>] &lt;<span class="hljs-type">System.String</span>[]&gt;] [[-<span class="hljs-type">ArgumentList</span>] &lt;<span class="hljs-type">System.Object</span>[]&gt;] [-<span class="hljs-type">All</span>] [-<span class="hljs-type">CommandType</span> &#123;<span class="hljs-type">Alias</span> | <span class="hljs-type">Function</span> | <span class="hljs-type">Filter</span> | <span class="hljs-type">Cmdlet</span> | <span class="hljs-type">ExternalScript</span> | <span class="hljs-type">Application</span> | <span class="hljs-type">Script</span> | <span class="hljs-type">Workflow</span> | <span class="hljs-type">Configuration</span> | <span class="hljs-type">All</span>&#125;] [-<span class="hljs-type">FullyQualifiedModule</span> &lt;<br>   <span class="hljs-type">Microsoft.PowerShell.Commands.ModuleSpecification</span>[]&gt;] [-<span class="hljs-type">ListImported</span>] [-<span class="hljs-type">Module</span> &lt;<span class="hljs-type">System.String</span>[]&gt;] [-<span class="hljs-type">ParameterName</span> &lt;<span class="hljs-type">System.String</span>[]&gt;] [-<span class="hljs-type">ParameterType</span> &lt;<span class="hljs-type">System.Management.Automation.PSTypeName</span>[]&gt;] [-<span class="hljs-type">ShowCommandInfo</span>] [-<span class="hljs-type">Syntax</span>] [-<span class="hljs-type">TotalCo</span><br>   <span class="hljs-type">unt</span> &lt;<span class="hljs-type">System.Int32</span>&gt;] [&lt;<span class="hljs-type">CommonParameters</span>&gt;]<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">Get-Command</span> [[-<span class="hljs-type">ArgumentList</span>] &lt;<span class="hljs-type">System.Object</span>[]&gt;] [-<span class="hljs-type">All</span>] [-<span class="hljs-type">FullyQualifiedModule</span> &lt;<span class="hljs-type">Microsoft.PowerShell.Commands.ModuleSpecification</span>[]&gt;] [-<span class="hljs-type">ListImported</span>] [-<span class="hljs-type">Module</span> &lt;<span class="hljs-type">System.String</span>[]&gt;] [-<span class="hljs-type">Noun</span> &lt;<span class="hljs-type">System.String</span>[]&gt;] [-<span class="hljs-type">ParameterName</span> &lt;<span class="hljs-type">System.Strin</span><br>    <span class="hljs-type">g</span>[]&gt;] [-<span class="hljs-type">ParameterType</span> &lt;<span class="hljs-type">System.Management.Automation.PSTypeName</span>[]&gt;] [-<span class="hljs-type">ShowCommandInfo</span>] [-<span class="hljs-type">Syntax</span>] [-<span class="hljs-type">TotalCount</span> &lt;<span class="hljs-type">System.Int32</span>&gt;] [-<span class="hljs-type">Verb</span> &lt;<span class="hljs-type">System.String</span>[]&gt;] [&lt;<span class="hljs-type">CommonParameters</span>&gt;]<br></code></pre></td></tr></table></figure>
+
+<p>这里有 2 个语法，</p>
+<p><code>get-command string[]</code> 表示获取字符串列表的所有命令</p>
+<p><code>get-command object[]</code></p>
+<p>例如，获取 ls, cat 命令</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">12</span>:<span class="hljs-number">54</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">Get-Command</span> <span class="hljs-built_in">ls</span>,<span class="hljs-built_in">cat</span><br><br>CommandType     Name                                               Version    Source<br><span class="hljs-literal">-----------</span>     <span class="hljs-literal">----</span>                                               <span class="hljs-literal">-------</span>    <span class="hljs-literal">------</span><br>Alias           <span class="hljs-built_in">ls</span> -&gt; <span class="hljs-built_in">Get-ChildItem</span><br>Alias           <span class="hljs-built_in">cat</span> -&gt; <span class="hljs-built_in">Get-Content</span><br><br><br><span class="hljs-number">12</span>:<span class="hljs-number">55</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">Get-Command</span> <span class="hljs-built_in">ls</span><br><br>CommandType     Name                                               Version    Source<br><span class="hljs-literal">-----------</span>     <span class="hljs-literal">----</span>                                               <span class="hljs-literal">-------</span>    <span class="hljs-literal">------</span><br>Alias           <span class="hljs-built_in">ls</span> -&gt; <span class="hljs-built_in">Get-ChildItem</span><br></code></pre></td></tr></table></figure>
+
+<p>windows 中，兼容 linux 的命令，可以从这里看出是别名，如何知道 windows 有哪些别名？</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># 别名相关的主题？</span><br><span class="hljs-number">12</span>:<span class="hljs-number">56</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  help *alias*<br><br>Name                              Category  Module                    Synopsis<br><span class="hljs-literal">----</span>                              <span class="hljs-literal">--------</span>  <span class="hljs-literal">------</span>                    <span class="hljs-literal">--------</span><br><span class="hljs-built_in">Export-Alias</span>                      Cmdlet    Microsoft.PowerShell.U... Exports information about currently defined aliases to a file.<br><span class="hljs-built_in">Get-Alias</span>                         Cmdlet    Microsoft.PowerShell.U... Gets the aliases <span class="hljs-keyword">for</span> the current session.<br><span class="hljs-built_in">Import-Alias</span>                      Cmdlet    Microsoft.PowerShell.U... Imports an alias list from a file.<br><span class="hljs-built_in">New-Alias</span>                         Cmdlet    Microsoft.PowerShell.U... Creates a new alias.<br><span class="hljs-built_in">Set-Alias</span>                         Cmdlet    Microsoft.PowerShell.U... Creates or changes an alias <span class="hljs-keyword">for</span> a cmdlet or other command <span class="hljs-keyword">in</span> the current PowerShell session.<br><span class="hljs-built_in">Get-ModuleAliases</span>                 <span class="hljs-function"><span class="hljs-keyword">Function</span>  <span class="hljs-title">AdminToolbox</span>              ...</span><br>about_Aliases                     HelpFile<br>about_Alias_Provider              HelpFile<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># 可以看到 get-alias</span><br><span class="hljs-number">12</span>:<span class="hljs-number">57</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  help <span class="hljs-built_in">get-alias</span><br><br>名称<br>    <span class="hljs-built_in">Get-Alias</span><br><br>摘要<br>    Gets the aliases <span class="hljs-keyword">for</span> the current session.<br><br><br>语法<br>    <span class="hljs-built_in">Get-Alias</span> [-<span class="hljs-type">Definition</span> &lt;<span class="hljs-type">System.String</span>[]&gt;] [-<span class="hljs-type">Exclude</span> &lt;<span class="hljs-type">System.String</span>[]&gt;] [-<span class="hljs-type">Scope</span> &lt;<span class="hljs-type">System.String</span>&gt;] [&lt;<span class="hljs-type">CommonParameters</span>&gt;]<br><br>    <span class="hljs-built_in">Get-Alias</span> [[-<span class="hljs-type">Name</span>] &lt;<span class="hljs-type">System.String</span>[]&gt;] [-<span class="hljs-type">Exclude</span> &lt;<span class="hljs-type">System.String</span>[]&gt;] [-<span class="hljs-type">Scope</span> &lt;<span class="hljs-type">System.String</span>&gt;] [&lt;<span class="hljs-type">CommonParameters</span>&gt;]<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">12</span>:<span class="hljs-number">57</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">get-alias</span><br><br>CommandType     Name                                               Version    Source<br><span class="hljs-literal">-----------</span>     <span class="hljs-literal">----</span>                                               <span class="hljs-literal">-------</span>    <span class="hljs-literal">------</span><br>Alias           % -&gt; <span class="hljs-built_in">ForEach-Object</span><br>Alias           ? -&gt; <span class="hljs-built_in">Where-Object</span><br>Alias           <span class="hljs-built_in">ac</span> -&gt; <span class="hljs-built_in">Add-Content</span><br>Alias           <span class="hljs-built_in">asnp</span> -&gt; <span class="hljs-built_in">Add-PSSnapin</span><br>Alias           <span class="hljs-built_in">cat</span> -&gt; <span class="hljs-built_in">Get-Content</span><br>Alias           <span class="hljs-built_in">cd</span> -&gt; <span class="hljs-built_in">Set-Location</span><br>Alias           <span class="hljs-built_in">CFS</span> -&gt; <span class="hljs-built_in">ConvertFrom-String</span>                          <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Utility<br>Alias           <span class="hljs-built_in">chdir</span> -&gt; <span class="hljs-built_in">Set-Location</span><br>Alias           <span class="hljs-built_in">clc</span> -&gt; <span class="hljs-built_in">Clear-Content</span><br></code></pre></td></tr></table></figure>
+
+<p>这样我们就拿到了 powershell 会话的所有别名</p>
+<p>现在获取 get-childitem 命令</p>
+<ol>
+<li><p>直接给命令</p>
+</li>
+<li><p>给动作，匹配相关的名称</p>
+</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">12</span>:<span class="hljs-number">58</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">Get-Command</span> <span class="hljs-built_in">get-childitem</span><br><br>CommandType     Name                                               Version    Source<br><span class="hljs-literal">-----------</span>     <span class="hljs-literal">----</span>                                               <span class="hljs-literal">-------</span>    <span class="hljs-literal">------</span><br>Cmdlet          <span class="hljs-built_in">Get-ChildItem</span>                                      <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br><br><br><span class="hljs-number">12</span>:<span class="hljs-number">59</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">Get-Command</span> <span class="hljs-literal">-Verb</span> get <span class="hljs-literal">-Noun</span> *item*<br><br>CommandType     Name                                               Version    Source<br><span class="hljs-literal">-----------</span>     <span class="hljs-literal">----</span>                                               <span class="hljs-literal">-------</span>    <span class="hljs-literal">------</span><br><span class="hljs-function"><span class="hljs-keyword">Function</span>        <span class="hljs-title">Get-DAEntryPointTableItem</span>                          <span class="hljs-title">1</span>.<span class="hljs-title">0</span>.<span class="hljs-title">0</span>.<span class="hljs-title">0</span>    <span class="hljs-title">DirectAccessClientComponents</span></span><br><span class="hljs-function"><span class="hljs-keyword">Function</span>        <span class="hljs-title">Get-SFTPChildItem</span>                                  <span class="hljs-title">3</span>.<span class="hljs-title">0</span>.<span class="hljs-title">6</span>      <span class="hljs-title">Posh-SSH</span></span><br><span class="hljs-function"><span class="hljs-keyword">Function</span>        <span class="hljs-title">Get-TestDriveItem</span>                                  <span class="hljs-title">3</span>.<span class="hljs-title">4</span>.<span class="hljs-title">0</span>      <span class="hljs-title">Pester</span></span><br>Cmdlet          <span class="hljs-built_in">Get-ChildItem</span>                                      <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br>Cmdlet          <span class="hljs-built_in">Get-ControlPanelItem</span>                               <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br>Cmdlet          <span class="hljs-built_in">Get-Item</span>                                           <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br>Cmdlet          <span class="hljs-built_in">Get-ItemProperty</span>                                   <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br>Cmdlet          <span class="hljs-built_in">Get-ItemPropertyValue</span>                              <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br>Cmdlet          <span class="hljs-built_in">Get-SCPItem</span>                                        <span class="hljs-number">3.0</span>.<span class="hljs-number">6</span>      Posh<span class="hljs-literal">-SSH</span><br>Cmdlet          <span class="hljs-built_in">Get-SFTPItem</span>                                       <span class="hljs-number">3.0</span>.<span class="hljs-number">6</span>      Posh<span class="hljs-literal">-SSH</span><br></code></pre></td></tr></table></figure>
+
+<p>这里可以看出，get-childitem 命令来自<code>Microsoft.PowerShell.Management</code> 模块。</p>
+<p>查看这个模块对应的命令</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">Get-Command</span> <span class="hljs-literal">-Module</span> Microsoft.PowerShell.Management<br></code></pre></td></tr></table></figure>
+
+<p>查看这个模块对应的 get 命令</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">13</span>:<span class="hljs-number">01</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">Get-Command</span> <span class="hljs-literal">-Module</span> Microsoft.PowerShell.Management <span class="hljs-literal">-Verb</span> get<br><br>CommandType     Name                                               Version    Source<br><span class="hljs-literal">-----------</span>     <span class="hljs-literal">----</span>                                               <span class="hljs-literal">-------</span>    <span class="hljs-literal">------</span><br>Cmdlet          <span class="hljs-built_in">Get-ChildItem</span>                                      <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br>Cmdlet          <span class="hljs-built_in">Get-Clipboard</span>                                      <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br>Cmdlet          <span class="hljs-built_in">Get-ComputerInfo</span>                                   <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br>Cmdlet          <span class="hljs-built_in">Get-ComputerRestorePoint</span>                           <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br>Cmdlet          <span class="hljs-built_in">Get-Content</span>                                        <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br>Cmdlet          <span class="hljs-built_in">Get-ControlPanelItem</span>                               <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br>Cmdlet          <span class="hljs-built_in">Get-EventLog</span>                                       <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br>Cmdlet          <span class="hljs-built_in">Get-HotFix</span>                                         <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br>Cmdlet          <span class="hljs-built_in">Get-Item</span>                                           <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br>Cmdlet          <span class="hljs-built_in">Get-ItemProperty</span>                                   <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br>Cmdlet          <span class="hljs-built_in">Get-ItemPropertyValue</span>                              <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br>Cmdlet          <span class="hljs-built_in">Get-Location</span>                                       <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br>Cmdlet          <span class="hljs-built_in">Get-Process</span>                                        <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br>Cmdlet          <span class="hljs-built_in">Get-PSDrive</span>                                        <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br>Cmdlet          <span class="hljs-built_in">Get-PSProvider</span>                                     <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br>Cmdlet          <span class="hljs-built_in">Get-Service</span>                                        <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br>Cmdlet          <span class="hljs-built_in">Get-TimeZone</span>                                       <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br>Cmdlet          <span class="hljs-built_in">Get-Transaction</span>                                    <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br>Cmdlet          <span class="hljs-built_in">Get-WmiObject</span>                                      <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br></code></pre></td></tr></table></figure>
+
+<p>查看这个模块 get 命令，其中时间相关的命令</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">13</span>:<span class="hljs-number">02</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">Get-Command</span> <span class="hljs-literal">-Module</span> Microsoft.PowerShell.Management <span class="hljs-literal">-Verb</span> get <span class="hljs-literal">-Noun</span> *time*<br><br>CommandType     Name                                               Version    Source<br><span class="hljs-literal">-----------</span>     <span class="hljs-literal">----</span>                                               <span class="hljs-literal">-------</span>    <span class="hljs-literal">------</span><br>Cmdlet          <span class="hljs-built_in">Get-TimeZone</span>                                       <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br></code></pre></td></tr></table></figure>
+
+<h1 id="安装命令"><a href="#安装命令" class="headerlink" title="安装命令"></a>安装命令</h1><h2 id="仓库"><a href="#仓库" class="headerlink" title="仓库"></a>仓库</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">13</span>:<span class="hljs-number">03</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">Get-PSRepository</span><br><br>Name                      InstallationPolicy   SourceLocation<br><span class="hljs-literal">----</span>                      <span class="hljs-literal">------------------</span>   <span class="hljs-literal">--------------</span><br>PSGallery                 Trusted              https://www.powershellgallery.com/api/v2<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>这个 psrepo 相关的操作，通过以上的帮助来探索即可</p>
+</li>
+<li><p>配置仓库，修改仓库，删除仓库….</p>
+</li>
+</ul>
+<h1 id="搜索软件"><a href="#搜索软件" class="headerlink" title="搜索软件"></a>搜索软件</h1><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">13</span>:<span class="hljs-number">05</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  help *module*                                                                                                                                                                                                                                                                                                                                                                                                                                          Name                              Category  Module                    Synopsis<br><span class="hljs-literal">----</span>                              <span class="hljs-literal">--------</span>  <span class="hljs-literal">------</span>                    <span class="hljs-literal">--------</span><br>ImportSystemModules               <span class="hljs-function"><span class="hljs-keyword">Function</span>                            ...</span><br><span class="hljs-built_in">Find-Module</span>                       <span class="hljs-function"><span class="hljs-keyword">Function</span>  <span class="hljs-title">PowerShellGet</span>             ...</span><br><span class="hljs-built_in">Get-InstalledModule</span>               <span class="hljs-function"><span class="hljs-keyword">Function</span>  <span class="hljs-title">PowerShellGet</span>             ...</span><br><span class="hljs-built_in">Install-Module</span>                    <span class="hljs-function"><span class="hljs-keyword">Function</span>  <span class="hljs-title">PowerShellGet</span>             ...</span><br><span class="hljs-built_in">Publish-Module</span>                    <span class="hljs-function"><span class="hljs-keyword">Function</span>  <span class="hljs-title">PowerShellGet</span>             ...</span><br><span class="hljs-built_in">Save-Module</span>                       <span class="hljs-function"><span class="hljs-keyword">Function</span>  <span class="hljs-title">PowerShellGet</span>             ...</span><br><span class="hljs-built_in">Uninstall-Module</span>                  <span class="hljs-function"><span class="hljs-keyword">Function</span>  <span class="hljs-title">PowerShellGet</span>             ...</span><br><span class="hljs-built_in">Update-Module</span>                     <span class="hljs-function"><span class="hljs-keyword">Function</span>  <span class="hljs-title">PowerShellGet</span>             ...</span><br><span class="hljs-built_in">Update-ModuleManifest</span>             <span class="hljs-function"><span class="hljs-keyword">Function</span>  <span class="hljs-title">PowerShellGet</span>             ...</span><br><span class="hljs-built_in">Export-ModuleMember</span>               Cmdlet    Microsoft.PowerShell.Core Specifies the module members that are exported.<br><span class="hljs-built_in">Get-Module</span>                        Cmdlet    Microsoft.PowerShell.Core List the modules imported <span class="hljs-keyword">in</span> the current session or that can be imported from the PSModulePath.<br><span class="hljs-built_in">Import-Module</span>                     Cmdlet    Microsoft.PowerShell.Core Adds modules to the current session.<br><span class="hljs-built_in">New-Module</span>                        Cmdlet    Microsoft.PowerShell.Core Creates a new dynamic module that exists only <span class="hljs-keyword">in</span> memory.<br><span class="hljs-built_in">New-ModuleManifest</span>                Cmdlet    Microsoft.PowerShell.Core Creates a new module manifest.<br><span class="hljs-built_in">Remove-Module</span>                     Cmdlet    Microsoft.PowerShell.Core Removes modules from the current session.<br><span class="hljs-built_in">Test-ModuleManifest</span>               Cmdlet    Microsoft.PowerShell.Core Verifies that a module manifest file accurately describes the contents of a module.<br><span class="hljs-built_in">Get-ModuleAliases</span>                 <span class="hljs-function"><span class="hljs-keyword">Function</span>  <span class="hljs-title">AdminToolbox</span>              ...</span><br><span class="hljs-built_in">Get-CPowerShellModuleInstallPath</span>  <span class="hljs-function"><span class="hljs-keyword">Function</span>  <span class="hljs-title">Carbon</span>                    ...</span><br><span class="hljs-built_in">Test-ModuleLoaded</span>                 <span class="hljs-function"><span class="hljs-keyword">Function</span>  <span class="hljs-title">core</span>                      ...</span><br>InModuleScope                     <span class="hljs-function"><span class="hljs-keyword">Function</span>  <span class="hljs-title">Pester</span>                    ...</span><br>about_Modules                     HelpFile<br>about_Module_Manifests            HelpFile<br>about_PSModulePath                HelpFile <br></code></pre></td></tr></table></figure>
+
+<p>可以看到有一个 find 命令，应该是查找命令相关的.</p>
+<p>install，就表示安装命令</p>
+<p>获取相应的帮助</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">help <span class="hljs-built_in">Find-Module</span> <span class="hljs-literal">-online</span><br></code></pre></td></tr></table></figure>
+
+<p>查找 powershell 相关的模块</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">Find-Module</span>  PowerShell*<br></code></pre></td></tr></table></figure>
+
+<p>查找指定版本</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">find-module</span> PowerShellGet <span class="hljs-literal">-RequiredVersion</span> <span class="hljs-number">1.6</span>.<span class="hljs-number">5</span><br></code></pre></td></tr></table></figure>
+
+<p>在指定仓库内查找</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">Find-Module</span>  PowerShellGet <span class="hljs-literal">-Repository</span> PSGallery<br></code></pre></td></tr></table></figure>
+
+<p>基于 name, description, and tags 搜索相关的模块</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">Find-Module</span> <span class="hljs-literal">-Filter</span> net<br></code></pre></td></tr></table></figure>
+
+<p>基于 tag 搜索</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">Find-Module</span> <span class="hljs-literal">-Tag</span> CrescendoBuilt<br></code></pre></td></tr></table></figure>
+
+<p>例如我们搜索 kubernetes 搜索</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">13</span>:<span class="hljs-number">20</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">Find-Module</span> kubernetes<br><br>Version    Name                                Repository           Description<br><span class="hljs-literal">-------</span>    <span class="hljs-literal">----</span>                                <span class="hljs-literal">----------</span>           <span class="hljs-literal">-----------</span><br><span class="hljs-number">1.0</span>.<span class="hljs-number">0</span>      Kubernetes                          PSGallery            Kubernetes<br><br><br><span class="hljs-number">13</span>:<span class="hljs-number">24</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">Install-Module</span> Kubernetes<br></code></pre></td></tr></table></figure>
+
+<p>查看安装的模块</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">13</span>:<span class="hljs-number">25</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">Get-InstalledModule</span><br><br>Version    Name                                Repository           Description<br><span class="hljs-literal">-------</span>    <span class="hljs-literal">----</span>                                <span class="hljs-literal">----------</span>           <span class="hljs-literal">-----------</span><br><span class="hljs-number">11.0</span>.<span class="hljs-number">3</span>     AdminToolbox                        PSGallery            Master module <span class="hljs-keyword">for</span> a collection of modules. These modules are varied <span class="hljs-keyword">in</span> their tasks. The overall purpose of them being to provide a powerfull Toolset to improve IT Ad...<br><span class="hljs-number">1.8</span>.<span class="hljs-number">0</span>      AdminToolbox.ActiveDirectory        PSGallery            Functions <span class="hljs-keyword">for</span> Active Directory<br><span class="hljs-number">4.8</span>.<span class="hljs-number">0</span>      AdminToolbox.EndpointManagement     PSGallery            Functions <span class="hljs-keyword">for</span> management of endpoints<br><span class="hljs-number">1.9</span>.<span class="hljs-number">0</span>      AdminToolbox.Exchange               PSGallery            Functions <span class="hljs-keyword">for</span> Exchange Management<br><span class="hljs-number">4.12</span>.<span class="hljs-number">0</span>     AdminToolbox.FFTools                PSGallery            Expedite simple ffmpeg actions<br><span class="hljs-number">1.13</span>.<span class="hljs-number">0</span>     AdminToolbox.FileManagement         PSGallery            File Management Functions<br><span class="hljs-number">2.15</span>.<span class="hljs-number">0</span>     AdminToolbox.FortiWizard            PSGallery            Functions that generate configuration scripts and manage FortiOS.<br><span class="hljs-number">1.6</span>.<span class="hljs-number">0</span>      AdminToolbox.Fun                    PSGallery            Functions that have no purpose<br><span class="hljs-number">1.2</span>.<span class="hljs-number">0</span>      AdminToolbox.MSGraph                PSGallery            Microsoft Graph interactive API Functions<br><span class="hljs-number">2.13</span>.<span class="hljs-number">0</span>     AdminToolbox.Networking             PSGallery            Network Troubleshooting Functions<br><span class="hljs-number">2.10</span>.<span class="hljs-number">0</span>     AdminToolbox.Office365              PSGallery            Functions <span class="hljs-keyword">for</span> working with Office365 and Azure modules<br><span class="hljs-number">1.9</span>.<span class="hljs-number">0</span>      AdminToolbox.Remoting               PSGallery            Functions <span class="hljs-keyword">for</span> remote management and access.<br><span class="hljs-number">4.8</span>.<span class="hljs-number">0</span>      AdminToolbox.VMWareAutomate         PSGallery            Functions to Automate Bulk VMWare Tasks<br><span class="hljs-number">2.11</span>.<span class="hljs-number">3</span>     Carbon                              PSGallery            Carbon is a PowerShell module <span class="hljs-keyword">for</span> automating the configuration Windows <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">2008</span>, and <span class="hljs-number">2012</span> and automation the installation and configuration of Windows applications...<br><span class="hljs-number">1.9</span>        core                                PSGallery            Module with various generic functions that could be used <span class="hljs-keyword">in</span> any script<br><span class="hljs-number">1.0</span>.<span class="hljs-number">2</span>      <span class="hljs-built_in">Get-IPInfo</span>                          PSGallery            Quickly look up IP Information including location, ISP and Organization<br><span class="hljs-number">7.8</span>.<span class="hljs-number">0</span>      ImportExcel                         PSGallery            PowerShell module to import/export Excel spreadsheets, without Excel....<br><span class="hljs-number">1.1</span>.<span class="hljs-number">1</span>      IPTools                             PSGallery            This module offers a <span class="hljs-built_in">set</span> of tools to manage IP networks and devices.<br><span class="hljs-number">1.0</span>.<span class="hljs-number">0</span>      Kubernetes                          PSGallery            Kubernetes<br><span class="hljs-number">3.0</span>.<span class="hljs-number">6</span>      Posh<span class="hljs-literal">-SSH</span>                            PSGallery            Provide SSH and SCP functionality <span class="hljs-keyword">for</span> executing commands against remote hosts.<br><span class="hljs-number">0.3</span>.<span class="hljs-number">0.0</span>    PoshPrivilege                       PSGallery            Module designed to use allow easier access to work with User Rights (privileges)<br><span class="hljs-number">1.3</span>.<span class="hljs-number">1</span>      ProgramManagement                   PSGallery            This Module makes it easier to Install/Uninstall programs on Windows, regardless of the method of installation (PSGet, Chocolatey CmdLine, .msi, etc). GitHub: https:...<br><span class="hljs-number">1.0</span>.<span class="hljs-number">22</span>     PSEventViewer                       PSGallery            Simple module allowing parsing of event logs. Has its own quirks...<br><span class="hljs-number">0.9</span>.<span class="hljs-number">3</span>      ud<span class="hljs-literal">-netmon</span>                           PSGallery            Web<span class="hljs-literal">-based</span> GUI (PowerShell Universal Dashboard) that pings specified Remote Hosts on your Domain every <span class="hljs-number">5</span> seconds. GitHub: https://github.com/pldmgg/UD<span class="hljs-literal">-NetMon</span><br><span class="hljs-number">2.1</span>.<span class="hljs-number">1</span>      WindowsKeyboardManagement           PSGallery            Allows keys on the physical keyboard to be remapped, and redefine programs associated with multimedia keys. <span class="hljs-keyword">For</span> example, you can remap the <span class="hljs-string">&quot;Scroll Lock&quot;</span> key to the<br></code></pre></td></tr></table></figure>
+
+<p>导入模块</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">13</span>:<span class="hljs-number">25</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">Import-Module</span> Kubernetes<br><span class="hljs-number">13</span>:<span class="hljs-number">25</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">Get-Module</span><br><br>ModuleType Version    Name                                ExportedCommands<br><span class="hljs-literal">----------</span> <span class="hljs-literal">-------</span>    <span class="hljs-literal">----</span>                                <span class="hljs-literal">----------------</span><br>Manifest   <span class="hljs-number">1.0</span>.<span class="hljs-number">0</span>      Kubernetes<br></code></pre></td></tr></table></figure>
+
+<p>获取模块相关的命令</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">13</span>:<span class="hljs-number">26</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">Get-Command</span> <span class="hljs-literal">-Module</span> Kubernetes<br></code></pre></td></tr></table></figure>
+
+<h1 id="远程执行命令"><a href="#远程执行命令" class="headerlink" title="远程执行命令"></a>远程执行命令</h1><p>打开远程功能,</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">13</span>:<span class="hljs-number">27</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">Enable-PSRemoting</span><br></code></pre></td></tr></table></figure>
+
+<p>功能打开后，会侦听  5985 端口</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">13</span>:<span class="hljs-number">31</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">Get-NetTCPConnection</span> <span class="hljs-literal">-State</span> Listen <span class="hljs-literal">-LocalPort</span> <span class="hljs-number">5985</span><br><br>LocalAddress                        LocalPort RemoteAddress                       RemotePort State       AppliedSetting OwningProcess<br><span class="hljs-literal">------------</span>                        <span class="hljs-literal">---------</span> <span class="hljs-literal">-------------</span>                       <span class="hljs-literal">----------</span> <span class="hljs-literal">-----</span>       <span class="hljs-literal">--------------</span> <span class="hljs-literal">-------------</span><br>::                                  <span class="hljs-number">5985</span>      ::                                  <span class="hljs-number">0</span>          Listen                     <span class="hljs-number">4</span><br></code></pre></td></tr></table></figure>
+
+<p>远程连接</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">Invoke-Command</span> <span class="hljs-literal">-ComputerName</span> <span class="hljs-string">&quot;192.168.13.103&quot;</span> <span class="hljs-literal">-Credential</span> (<span class="hljs-built_in">Get-Credential</span>) &#123; <span class="hljs-built_in">Get-ComputerInfo</span> &#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="提供者"><a href="#提供者" class="headerlink" title="提供者"></a>提供者</h1><p>psprovider，本质上是一个适配器，把一切都模拟成文件操作。统一使用 get-item, new-item, remove-item 来操作，适配器负责将这些操作转换成对应适配器后的操作。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">13</span>:<span class="hljs-number">35</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">Get-PSProvider</span><br><br>Name                 Capabilities                                                                                                Drives<br><span class="hljs-literal">----</span>                 <span class="hljs-literal">------------</span>                                                                                                <span class="hljs-literal">------</span><br>Registry             ShouldProcess, Transactions                                                                                 &#123;HKLM, HKCU&#125;<br>Alias                ShouldProcess                                                                                               &#123;Alias&#125;<br>Environment          ShouldProcess                                                                                               &#123;Env&#125;<br>FileSystem           <span class="hljs-keyword">Filter</span>, ShouldProcess, Credentials                                                                          &#123;C, D, E, F...&#125;<br><span class="hljs-function"><span class="hljs-keyword">Function</span>             <span class="hljs-title">ShouldProcess</span></span>                                                                                               &#123;Function&#125;<br>Variable             ShouldProcess                                                                                               &#123;Variable&#125;<br>WSMan                Credentials                                                                                                 &#123;WSMan&#125;<br>Certificate          ShouldProcess                                                                                               &#123;Cert&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这里，有很多适配器，均可以通过一套接口操作。操作每个适配器，可以有多个操作入口，例如下面的文件系统，有 CDEFG，这些入口。注册表有 HKCU/HKLM。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">14</span>:<span class="hljs-number">02</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">Get-PSDrive</span><br><br>Name           Used (GB)     Free (GB) Provider      Root                                                                                                                                                                    CurrentLocation<br><span class="hljs-literal">----</span>           <span class="hljs-literal">---------</span>     <span class="hljs-literal">---------</span> <span class="hljs-literal">--------</span>      <span class="hljs-literal">----</span>                                                                                                                                                                    <span class="hljs-literal">---------------</span><br>Alias                                  Alias<br>C                 <span class="hljs-number">112.18</span>          <span class="hljs-number">8.23</span> FileSystem    C:\                                                                                                                                                                    Windows\system32<br>Cert                                   Certificate   \<br>D                  <span class="hljs-number">71.20</span>         <span class="hljs-number">50.80</span> FileSystem    D:\<br>E                  <span class="hljs-number">40.41</span>         <span class="hljs-number">81.59</span> FileSystem    E:\<br>Env                                    Environment<br>F                   <span class="hljs-number">0.09</span>        <span class="hljs-number">100.94</span> FileSystem    F:\<br><span class="hljs-function"><span class="hljs-keyword">Function</span>                               <span class="hljs-keyword">Function</span></span><br>G                  <span class="hljs-number">50.93</span>        <span class="hljs-number">396.19</span> FileSystem    G:\<br>HKCU                                   Registry      HKEY_CURRENT_USER<br>HKLM                                   Registry      HKEY_LOCAL_MACHINE<br>Variable                               Variable<br>WSMan                                  WSMan<br></code></pre></td></tr></table></figure>
+
+<p>例如查看 C:/盘的文件</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">14</span>:<span class="hljs-number">05</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">ls</span> <span class="hljs-literal">-Name</span> c:/<br><span class="hljs-number">2020</span><span class="hljs-literal">-09-16-myblog</span><br>pcwlenv<br>Program Files<br>Program Files (x86)<br>Temp<br>Users<br>Windows<br>dcdspdbg.log<br>DumpStack.log<br>priv.pfx<br></code></pre></td></tr></table></figure>
+
+<p>查看 hkcu 下的内容</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">14</span>:<span class="hljs-number">05</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">ls</span> hkcu:/ <span class="hljs-literal">-name</span><br>AppEvents<br>Console<br>Control Panel<br>Environment<br>EUDC<br>Keyboard Layout<br>Layout<br>Network<br>Printers<br>Software<br>System<br>Uninstall<br>Volatile Environment<br>wdsafeloadat<br></code></pre></td></tr></table></figure>
+
+<p><img src="2022-09-23-14-06-14-image.png" srcset="/img/loading.gif" lazyload alt="2022-09-23-14-06-14-image"></p>
+<p>刚刚好，一一对应。</p>
+<h2 id="item-属性"><a href="#item-属性" class="headerlink" title="item 属性"></a>item 属性</h2><p>一个项对应的属性。比如只读、项创建时间、长度等。</p>
+<p>一般这个 item 是只读的，当提供是注册表时，是可以修改的。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">14</span>:<span class="hljs-number">29</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">Get-Item</span> HKCU:\Console\<br><br><br>    Hive: HKEY_CURRENT_USER<br><br><br>Name                           Property<br><span class="hljs-literal">----</span>                           <span class="hljs-literal">--------</span><br>Console                        ColorTable00             : <span class="hljs-number">789516</span><br>                               ColorTable01             : <span class="hljs-number">14300928</span><br>                               ColorTable02             : <span class="hljs-number">958739</span><br>                               ColorTable03             : <span class="hljs-number">14521914</span><br></code></pre></td></tr></table></figure>
+
+<p>查看属性</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">14</span>:<span class="hljs-number">30</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">Get-ItemProperty</span> HKCU:\Console\<br><br><br>ColorTable00             : <span class="hljs-number">789516</span><br>ColorTable01             : <span class="hljs-number">14300928</span><br>ColorTable02             : <span class="hljs-number">958739</span><br>ColorTable03             : <span class="hljs-number">14521914</span><br>ColorTable04             : <span class="hljs-number">2035653</span><br>ColorTable05             : <span class="hljs-number">9967496</span><br>ColorTable06             : <span class="hljs-number">40129</span><br>ColorTable07             : <span class="hljs-number">13421772</span><br>ColorTable08             : <span class="hljs-number">7763574</span><br>ColorTable09             : <span class="hljs-number">16742459</span><br></code></pre></td></tr></table></figure>
+
+<p>修改属性</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">Set-ItemProperty</span> <span class="hljs-literal">-Path</span> <span class="hljs-string">&quot;HKLM:\Software\ContosoCompany&quot;</span> <span class="hljs-literal">-Name</span> <span class="hljs-string">&quot;NoOfEmployees&quot;</span> <span class="hljs-literal">-Value</span> <span class="hljs-number">824</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="item-操作"><a href="#item-操作" class="headerlink" title="item 操作"></a>item 操作</h2><p>以 filesystem 为例</p>
+<h3 id="添加文件或目录"><a href="#添加文件或目录" class="headerlink" title="添加文件或目录"></a>添加文件或目录</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">14</span>:<span class="hljs-number">32</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">new-item</span> d:/<span class="hljs-built_in">test-2022</span><span class="hljs-literal">-9-23</span><br><br><br>    目录: D:\<br><br><br>Mode                 LastWriteTime         Length Name<br><span class="hljs-literal">----</span>                 <span class="hljs-literal">-------------</span>         <span class="hljs-literal">------</span> <span class="hljs-literal">----</span><br><span class="hljs-literal">-a----</span>         <span class="hljs-number">2022</span>/<span class="hljs-number">9</span>/<span class="hljs-number">23</span>     <span class="hljs-number">14</span>:<span class="hljs-number">38</span>              <span class="hljs-number">0</span> <span class="hljs-built_in">test-2022</span><span class="hljs-literal">-9-23</span><br><br><br><span class="hljs-number">14</span>:<span class="hljs-number">38</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">new-item</span> <span class="hljs-literal">-Type</span> Directory d:/<span class="hljs-built_in">test-d</span><br><br><br>    目录: D:\<br><br><br>Mode                 LastWriteTime         Length Name<br><span class="hljs-literal">----</span>                 <span class="hljs-literal">-------------</span>         <span class="hljs-literal">------</span> <span class="hljs-literal">----</span><br>d<span class="hljs-literal">-----</span>         <span class="hljs-number">2022</span>/<span class="hljs-number">9</span>/<span class="hljs-number">23</span>     <span class="hljs-number">14</span>:<span class="hljs-number">38</span>                <span class="hljs-built_in">test-d</span><br></code></pre></td></tr></table></figure>
+
+<p>注意，在行首的<code>-</code>, <code>d</code>，用来区别文件类型的。创建目录另一个<code>mkdir</code></p>
+<h3 id="删除目录或目录"><a href="#删除目录或目录" class="headerlink" title="删除目录或目录"></a>删除目录或目录</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">14</span>:<span class="hljs-number">38</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">Remove-Item</span> d:/<span class="hljs-built_in">test-d</span><br><span class="hljs-number">14</span>:<span class="hljs-number">39</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">Remove-Item</span> D:\<span class="hljs-built_in">test-2022</span><span class="hljs-literal">-9-23</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h1><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">14</span>:<span class="hljs-number">39</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">Get-Command</span> <span class="hljs-literal">-Noun</span> <span class="hljs-keyword">Process</span><br><br>CommandType     Name                                               Version    Source<br><span class="hljs-literal">-----------</span>     <span class="hljs-literal">----</span>                                               <span class="hljs-literal">-------</span>    <span class="hljs-literal">------</span><br>Cmdlet          <span class="hljs-built_in">Debug-Process</span>                                      <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br>Cmdlet          <span class="hljs-built_in">Get-Process</span>                                        <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br>Cmdlet          <span class="hljs-built_in">Start-Process</span>                                      <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br>Cmdlet          <span class="hljs-built_in">Stop-Process</span>                                       <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br>Cmdlet          <span class="hljs-built_in">Wait-Process</span>                                       <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br></code></pre></td></tr></table></figure>
+
+<h1 id="服务管理"><a href="#服务管理" class="headerlink" title="服务管理"></a>服务管理</h1><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">14</span>:<span class="hljs-number">40</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">Get-Command</span> <span class="hljs-literal">-Noun</span> Service<br><br>CommandType     Name                                               Version    Source<br><span class="hljs-literal">-----------</span>     <span class="hljs-literal">----</span>                                               <span class="hljs-literal">-------</span>    <span class="hljs-literal">------</span><br>Alias           <span class="hljs-built_in">Remove-Service</span>                                     <span class="hljs-number">2.11</span>.<span class="hljs-number">3</span>     Carbon<br>Cmdlet          <span class="hljs-built_in">Get-Service</span>                                        <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br>Cmdlet          <span class="hljs-built_in">New-Service</span>                                        <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br>Cmdlet          <span class="hljs-built_in">Restart-Service</span>                                    <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br>Cmdlet          <span class="hljs-built_in">Resume-Service</span>                                     <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br>Cmdlet          <span class="hljs-built_in">Set-Service</span>                                        <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br>Cmdlet          <span class="hljs-built_in">Start-Service</span>                                      <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br>Cmdlet          <span class="hljs-built_in">Stop-Service</span>                                       <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br>Cmdlet          <span class="hljs-built_in">Suspend-Service</span>                                    <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br></code></pre></td></tr></table></figure>
+
+<h1 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h1><p>由于 powershell 输出的均为对象，管道传递的是对象。linux 的管道传递的是字符串。</p>
+<p>管道的对象修改仅在使用 ft/fl 之后</p>
+<p>使用 select 可以将输出结果显示更少，或更多。默认显示有限，但是对象有很多的属性，为了完全显示，可以使用<code>| select *</code></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">Get-Process</span> notepad  | <span class="hljs-built_in">select</span> *<br></code></pre></td></tr></table></figure>
+
+<p>当选择所有字段，就会显示对象所有属性，一行显示不下，就会纵向显示。也可以显示更少的</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">14</span>:<span class="hljs-number">49</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">Get-Process</span> notepad  | <span class="hljs-built_in">select</span> name,id,cpu,VirtualMemorySize<br><br>Name       Id      CPU VirtualMemorySize<br><span class="hljs-literal">----</span>       <span class="hljs-literal">--</span>      <span class="hljs-literal">---</span> <span class="hljs-literal">-----------------</span><br>Notepad <span class="hljs-number">17848</span>   <span class="hljs-number">0.5625</span>         <span class="hljs-number">560594944</span><br>Notepad <span class="hljs-number">21288</span> <span class="hljs-number">1.390625</span>         <span class="hljs-number">564748288</span><br></code></pre></td></tr></table></figure>
+
+<p>这里显示的改变了，但是每行还是对象。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">14</span>:<span class="hljs-number">50</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">Get-Process</span> notepad  | <span class="hljs-built_in">select</span> name,id,cpu,VirtualMemorySize | <span class="hljs-built_in">gm</span><br><br><br>   TypeName:Selected.System.Diagnostics.Process<br><br>Name              MemberType   Definition<br><span class="hljs-literal">----</span>              <span class="hljs-literal">----------</span>   <span class="hljs-literal">----------</span><br>Equals            Method       bool Equals(System.Object obj)<br>GetHashCode       Method       int GetHashCode()<br>GetType           Method       <span class="hljs-built_in">type</span> GetType()<br>ToString          Method       string ToString()<br>CPU               NoteProperty System.Double CPU=<span class="hljs-number">0.5625</span><br>Id                NoteProperty int Id=<span class="hljs-number">17848</span><br>Name              NoteProperty string Name=Notepad<br>VirtualMemorySize NoteProperty int VirtualMemorySize=<span class="hljs-number">560594944</span><br></code></pre></td></tr></table></figure>
+
+<p>注意输出是<code>TypeName:Selected.System.Diagnostics.Proc</code></p>
+<p>更少的字段输出的是表格，我们显示列</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">14</span>:<span class="hljs-number">51</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">Get-Process</span> notepad  | <span class="hljs-built_in">select</span> name,id,cpu,VirtualMemorySize | <span class="hljs-built_in">fl</span><br><br><br>Name              : Notepad<br>Id                : <span class="hljs-number">17848</span><br>CPU               : <span class="hljs-number">0.5625</span><br>VirtualMemorySize : <span class="hljs-number">560594944</span><br><br>Name              : Notepad<br>Id                : <span class="hljs-number">21288</span><br>CPU               : <span class="hljs-number">1.390625</span><br>VirtualMemorySize : <span class="hljs-number">564748288</span><br></code></pre></td></tr></table></figure>
+
+<p>显示列之后，对象就不存在了</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">14</span>:<span class="hljs-number">51</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">Get-Process</span> notepad  | <span class="hljs-built_in">select</span> name,id,cpu,VirtualMemorySize | <span class="hljs-built_in">fl</span> | <span class="hljs-built_in">gm</span><br><br><br>   TypeName:Microsoft.PowerShell.Commands.Internal.Format.FormatStartData<br></code></pre></td></tr></table></figure>
+
+<p>ft/fl 均一样</p>
+<p>当 select 之后，我们还可以使用对象的操作，ft/fl 之后，就不能使用对象的操作了</p>
+<p>select 之后，期望 name 显示为 processname</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">15</span>:<span class="hljs-number">12</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">Get-Process</span> notepad  | <span class="hljs-built_in">select</span> name,id,cpu,VirtualMemorySize<br><br>Name       Id      CPU VirtualMemorySize<br><span class="hljs-literal">----</span>       <span class="hljs-literal">--</span>      <span class="hljs-literal">---</span> <span class="hljs-literal">-----------------</span><br>Notepad <span class="hljs-number">17848</span> <span class="hljs-number">0.578125</span>         <span class="hljs-number">560594944</span><br>Notepad <span class="hljs-number">21288</span> <span class="hljs-number">1.390625</span>         <span class="hljs-number">564748288</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">15</span>:<span class="hljs-number">14</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">Get-Process</span> notepad  | <span class="hljs-built_in">select</span> <span class="hljs-selector-tag">@</span>&#123;L=<span class="hljs-string">&#x27;ProcessName&#x27;</span>;E=&#123;<span class="hljs-variable">$_</span>.name&#125; &#125;,id,cpu,VirtualMemorySize<br><br>ProcessName    Id      CPU VirtualMemorySize<br><span class="hljs-literal">-----------</span>    <span class="hljs-literal">--</span>      <span class="hljs-literal">---</span> <span class="hljs-literal">-----------------</span><br>Notepad     <span class="hljs-number">17848</span> <span class="hljs-number">0.578125</span>         <span class="hljs-number">560594944</span><br>Notepad     <span class="hljs-number">21288</span> <span class="hljs-number">1.390625</span>         <span class="hljs-number">564748288</span><br></code></pre></td></tr></table></figure>
+
+<p>这里的修改显示字段名的语法可以使用在 select 中，<code>@&#123;L=&#39;ProcessName&#39;;E=&#123;$_.name&#125; &#125;</code> L 是显示的名，E 是表达式，可以求值。值就是每行这个字段显示的值。</p>
+<h1 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h1><p>之前我们显示的表格，可以通过 select 来显示更少或更多字段</p>
+<p>有 ft，可以显示为表格，fl 显示为列。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">14</span>:<span class="hljs-number">54</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">Get-Service</span><br><br>Status   Name               DisplayName<br><span class="hljs-literal">------</span>   <span class="hljs-literal">----</span>               <span class="hljs-literal">-----------</span><br>Stopped  AarSvc_503<span class="hljs-built_in">ac</span>       AarSvc_503<span class="hljs-built_in">ac</span><br>Stopped  AJRouter           AllJoyn Router Service<br>Stopped  ALG                Application Layer Gateway Service<br>Stopped  AppIDSvc           Application Identity<br>Running  Appinfo            Application Information<br>Stopped  AppMgmt            Application Management<br>Stopped  AppReadiness       App Readiness<br>Stopped  AppVClient         Microsoft App<span class="hljs-literal">-V</span> Client<br>Stopped  AppXSvc            AppX Deployment Service (AppXSVC)<br>Stopped  AssignedAccessM... AssignedAccessManager 服务<br>Running  AudioEndpointBu... Windows Audio Endpoint Builder<br>Running  Audiosrv           Windows Audio<br>Stopped  autotimesvc        手机网络时间<br></code></pre></td></tr></table></figure>
+
+<p>这里可以看出有<code>...</code>省略，说明没有显示完。我们可以添加选项显示完</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">14</span>:<span class="hljs-number">54</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">Get-Service</span> | <span class="hljs-built_in">ft</span> <span class="hljs-literal">-AutoSize</span> <span class="hljs-literal">-Wrap</span><br><br>Status  Name                                                   DisplayName<br><span class="hljs-literal">------</span>  <span class="hljs-literal">----</span>                                                   <span class="hljs-literal">-----------</span><br>Stopped AarSvc_503<span class="hljs-built_in">ac</span>                                           AarSvc_503<span class="hljs-built_in">ac</span><br>Stopped AJRouter                                               AllJoyn Router Service<br>Stopped ALG                                                    Application Layer Gateway Service<br>Stopped AppIDSvc                                               Application Identity<br>Running Appinfo                                                Application Information<br>Stopped AppMgmt                                                Application Management<br>Stopped AppReadiness                                           App Readiness<br>Stopped AppVClient                                             Microsoft App<span class="hljs-literal">-V</span> Client<br>Stopped AppXSvc                                                AppX Deployment Service (AppXSVC)<br>Stopped AssignedAccessManagerSvc                               AssignedAccessManager 服务<br></code></pre></td></tr></table></figure>
+
+<h1 id="powershell-脚本编程"><a href="#powershell-脚本编程" class="headerlink" title="powershell 脚本编程"></a>powershell 脚本编程</h1><h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-keyword">for</span> ((<span class="hljs-variable">$i</span> = <span class="hljs-number">0</span>), (<span class="hljs-variable">$j</span> = <span class="hljs-number">0</span>); <span class="hljs-variable">$i</span> <span class="hljs-operator">-lt</span> <span class="hljs-number">10</span>; <span class="hljs-variable">$i</span>++, <span class="hljs-variable">$j</span>++)<br>&#123;<br>    <span class="hljs-string">&quot;`$i:<span class="hljs-variable">$i</span>&quot;</span><br>    <span class="hljs-string">&quot;`$j:<span class="hljs-variable">$j</span>&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>命令直接循环</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">14</span>:<span class="hljs-number">46</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">Get-Process</span> notepad<br><br>Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id  <span class="hljs-built_in">SI</span> ProcessName<br><span class="hljs-literal">-------</span>  <span class="hljs-literal">------</span>    <span class="hljs-literal">-----</span>      <span class="hljs-literal">-----</span>     <span class="hljs-literal">------</span>     <span class="hljs-literal">--</span>  <span class="hljs-literal">--</span> <span class="hljs-literal">-----------</span><br>    <span class="hljs-number">655</span>      <span class="hljs-number">33</span>    <span class="hljs-number">47000</span>      <span class="hljs-number">52196</span>       <span class="hljs-number">0.56</span>  <span class="hljs-number">17848</span>   <span class="hljs-number">1</span> Notepad<br>    <span class="hljs-number">676</span>      <span class="hljs-number">35</span>    <span class="hljs-number">47476</span>      <span class="hljs-number">57476</span>       <span class="hljs-number">1.39</span>  <span class="hljs-number">21288</span>   <span class="hljs-number">1</span> Notepad<br><br><br><span class="hljs-number">14</span>:<span class="hljs-number">46</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">Get-Process</span> notepad | %&#123; <span class="hljs-variable">$_</span>.name &#125;<br>Notepad<br>Notepad<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>这里的%是 foreach 的别名，会遍历 每个对象。 {} 是语句块，是循环每个对象，其中引用每一个对象使用<code>$_</code></li>
+</ul>
+<h2 id="选择"><a href="#选择" class="headerlink" title="选择"></a>选择</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">help about_If<br></code></pre></td></tr></table></figure>
+
+<p>判断文件时，我们使用 test 表达式</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">14</span>:<span class="hljs-number">56</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-built_in">Get-Command</span> <span class="hljs-literal">-Verb</span> test <span class="hljs-literal">-Module</span> Microsoft.PowerShell.Management<br><br>CommandType     Name                                               Version    Source<br><span class="hljs-literal">-----------</span>     <span class="hljs-literal">----</span>                                               <span class="hljs-literal">-------</span>    <span class="hljs-literal">------</span><br>Cmdlet          <span class="hljs-built_in">Test-ComputerSecureChannel</span>                         <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br>Cmdlet          <span class="hljs-built_in">Test-Connection</span>                                    <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br>Cmdlet          <span class="hljs-built_in">Test-Path</span>                                          <span class="hljs-number">3.1</span>.<span class="hljs-number">0.0</span>    Microsoft.PowerShell.Management<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">14</span>:<span class="hljs-number">57</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-keyword">if</span>(<span class="hljs-built_in">test-path</span> d:/test) &#123; <span class="hljs-string">&#x27;123&#x27;</span> &#125; <span class="hljs-keyword">else</span> &#123; <span class="hljs-string">&#x27;not exist&#x27;</span> &#125;<br>not exist<br></code></pre></td></tr></table></figure>
+
+<h2 id="字符串替换"><a href="#字符串替换" class="headerlink" title="字符串替换"></a>字符串替换</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">help about_Comparison_Operators<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">14</span>:<span class="hljs-number">57</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-string">&quot;hello world&quot;</span> <span class="hljs-operator">-replace</span> <span class="hljs-string">&#x27;ll\S\s&#x27;</span>,<span class="hljs-string">&#x27;123&#x27;</span><br>he123world<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>正则匹配，目标字符串</li>
+</ul>
+<h2 id="算术运算"><a href="#算术运算" class="headerlink" title="算术运算"></a>算术运算</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">help about_Arithmetic_Operators<br></code></pre></td></tr></table></figure>
+
+<p>命令行可以直接进行一些算术操作</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">15</span>:<span class="hljs-number">09</span> [<span class="hljs-type">PS</span>] C:\Windows\system32 :&gt;  <span class="hljs-number">1</span>+<span class="hljs-number">2</span>+<span class="hljs-number">3</span>+<span class="hljs-number">4</span><br><span class="hljs-number">10</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="编写脚本"><a href="#编写脚本" class="headerlink" title="编写脚本"></a>编写脚本</h2><p>脚本策略</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">Set-ExecutionPolicy</span> RemoteSigned<br></code></pre></td></tr></table></figure>
+
+<p>RemoteSigned 表示 PowerShell<strong>可以运行本地任何脚本</strong>，同时<strong>也可以执行受信任的 CA 签发的数字证书签名之后的远程脚本</strong>。“远程脚本”是指存在于远端计算机上的脚本，经常通过通用命名规则（UNC）方式访问这些脚本。我们也会将那些来自于网络上的脚本称为“远程脚本”。Internet Explorer、Firefox 和 Outlook 中提供的可下载的脚本，我们均可视为来自网络的脚本。在某些版本的 Windows 中，会区分网络路径以及 UNC 路径。在这些场景中，本地网络中的 UNC 都不会认为是“远程”。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment">&lt;#</span><br><span class="hljs-comment"><span class="hljs-doctag">.SYNOPSIS</span></span><br><span class="hljs-comment">    从1个或多个计算机获取逻辑磁盘信息</span><br><span class="hljs-comment"><span class="hljs-doctag">.DESCRIPTION</span></span><br><span class="hljs-comment">    使用WMI接口从1或多个主机获取, 可用空间大于50%的win32_logicaldisk实例。 显示磁盘驱动，空间空间，总大小，空闲百分比</span><br><span class="hljs-comment"><span class="hljs-doctag">.PARAMETER drivetype</span></span><br><span class="hljs-comment">    磁盘类型，默认3</span><br><span class="hljs-comment"><span class="hljs-doctag">.PARAMETER gtfree</span></span><br><span class="hljs-comment">    可用空间百分比</span><br><span class="hljs-comment"><span class="hljs-doctag">.PARAMETER computername</span></span><br><span class="hljs-comment">    远程计算机名</span><br><span class="hljs-comment"><span class="hljs-doctag">.EXAMPLE</span></span><br><span class="hljs-comment">    get-disk -computername localhost -drivetype 3 -gtfree 80</span><br><span class="hljs-comment">#&gt;</span><br><span class="hljs-function">[<span class="hljs-type">cmdletbinding</span>()]</span><br><span class="hljs-keyword">param</span> (<br>    [<span class="hljs-built_in">int</span>]<span class="hljs-variable">$drivetype</span> = <span class="hljs-number">3</span>,<br>    [<span class="hljs-built_in">int</span>]<span class="hljs-variable">$gtfree</span>=<span class="hljs-number">50</span>,<br>    [<span class="hljs-type">Parameter</span>(<span class="hljs-type">Mandatory</span>=<span class="hljs-variable">$true</span>,<span class="hljs-type">HelpMessage</span>=<span class="hljs-string">&quot;enter a or a set computer to query&quot;</span>)]<br>    [<span class="hljs-built_in">string</span>]<span class="hljs-variable">$computername</span><br>)<br><br><span class="hljs-built_in">Get-WmiObject</span> win32_logicaldisk <span class="hljs-literal">-com</span> <span class="hljs-variable">$computername</span> <span class="hljs-literal">-filter</span> <span class="hljs-string">&quot;drivetype=<span class="hljs-variable">$drivetype</span>&quot;</span> | ? &#123; (<span class="hljs-variable">$_</span>.freespace / <span class="hljs-variable">$_</span>.size * <span class="hljs-number">100</span> ) <span class="hljs-operator">-gt</span> <span class="hljs-variable">$gtfree</span>&#125; | <span class="hljs-built_in">select</span> deviceid,<br>    <span class="hljs-selector-tag">@</span>&#123;L=<span class="hljs-string">&#x27;freesize(gb)&#x27;</span>;E=&#123;<span class="hljs-variable">$_</span>.freespace / <span class="hljs-number">1</span>gb <span class="hljs-operator">-as</span> [<span class="hljs-built_in">int</span>]&#125;&#125;,<br>    <span class="hljs-selector-tag">@</span>&#123;L=<span class="hljs-string">&#x27;size(gb)&#x27;</span>;E=&#123;<span class="hljs-variable">$_</span>.size / <span class="hljs-number">1</span>gb <span class="hljs-operator">-as</span> [<span class="hljs-built_in">int</span>]&#125;&#125;,<br>    <span class="hljs-selector-tag">@</span>&#123;L=<span class="hljs-string">&#x27;%free&#x27;</span>;E=&#123; <span class="hljs-variable">$_</span>.freespace / <span class="hljs-variable">$_</span>.size  *<span class="hljs-number">100</span>  <span class="hljs-operator">-as</span> [<span class="hljs-built_in">int</span>]&#125;&#125;<br></code></pre></td></tr></table></figure>
+
+<ol>
+<li><p><code>&lt;# #&gt;</code> 定义脚本的帮助。<code>.KEYWORD</code> 定义语法，变量对应的参数和值，和描述。 示例。powershell 会自动解析为, 帮助的各部分</p>
+</li>
+<li><p>参数段</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-function">[<span class="hljs-type">cmdletbinding</span>()]</span><br><span class="hljs-keyword">param</span> (<br>    [<span class="hljs-built_in">int</span>]<span class="hljs-variable">$drivetype</span> = <span class="hljs-number">3</span>,<br>    [<span class="hljs-built_in">int</span>]<span class="hljs-variable">$gtfree</span>=<span class="hljs-number">50</span>,<br>    [<span class="hljs-type">Parameter</span>(<span class="hljs-type">Mandatory</span>=<span class="hljs-variable">$true</span>,<span class="hljs-type">HelpMessage</span>=<span class="hljs-string">&quot;enter a or a set computer to query&quot;</span>)]<br>    [<span class="hljs-built_in">string</span>]<span class="hljs-variable">$computername</span><br>)<br></code></pre></td></tr></table></figure></li>
+</ol>
+<p><code>[cmdletbinding()]</code> 固定语法在<code>param()</code>前</p>
+<p><code>$drivetype = 3</code> 这个是定义变量，powershell 会自动解析为命令行参数，忽略大小写。 -drivetype, -drive, 可以简短格式，要求惟一</p>
+<p><code>[int]</code> <code>[string]</code></p>
+<p><code>[Parameter(Mandatory=$true,HelpMessage=&quot;enter a or a set computer to query&quot;)]</code> 是参数检验，要求字符，要求整整型。要求必给，不给，交互式提示输入。</p>
+<ol start="3">
+<li><p>脚本内容部分</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">Get-WmiObject</span> win32_logicaldisk <span class="hljs-literal">-com</span> <span class="hljs-variable">$computername</span> <span class="hljs-literal">-filter</span> <span class="hljs-string">&quot;drivetype=<span class="hljs-variable">$drivetype</span>&quot;</span> | ? &#123; (<span class="hljs-variable">$_</span>.freespace / <span class="hljs-variable">$_</span>.size * <span class="hljs-number">100</span> ) <span class="hljs-operator">-gt</span> <span class="hljs-variable">$gtfree</span>&#125; | <span class="hljs-built_in">select</span> deviceid,<br>    <span class="hljs-selector-tag">@</span>&#123;L=<span class="hljs-string">&#x27;freesize(gb)&#x27;</span>;E=&#123;<span class="hljs-variable">$_</span>.freespace / <span class="hljs-number">1</span>gb <span class="hljs-operator">-as</span> [<span class="hljs-built_in">int</span>]&#125;&#125;,<br>    <span class="hljs-selector-tag">@</span>&#123;L=<span class="hljs-string">&#x27;size(gb)&#x27;</span>;E=&#123;<span class="hljs-variable">$_</span>.size / <span class="hljs-number">1</span>gb <span class="hljs-operator">-as</span> [<span class="hljs-built_in">int</span>]&#125;&#125;,<br>    <span class="hljs-selector-tag">@</span>&#123;L=<span class="hljs-string">&#x27;%free&#x27;</span>;E=&#123; <span class="hljs-variable">$_</span>.freespace / <span class="hljs-variable">$_</span>.size  *<span class="hljs-number">100</span>  <span class="hljs-operator">-as</span> [<span class="hljs-built_in">int</span>]&#125;&#125;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<p>这里就是命令，只是可变的部分已抽成参数。</p>
+<p>执行</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">15</span>:<span class="hljs-number">23</span> [<span class="hljs-type">PS</span>] D:\ :&gt;  .\test.ps1 -?<br><br>名称<br>    D:\test.ps1<br><br>摘要<br>    从<span class="hljs-number">1</span>个或多个计算机获取逻辑磁盘信息<br><br><br>语法<br>    D:\test.ps1 [[-<span class="hljs-type">drivetype</span>] &lt;<span class="hljs-built_in">Int</span><span class="hljs-type">32</span>&gt;] [[-<span class="hljs-type">gtfree</span>] &lt;<span class="hljs-built_in">Int</span><span class="hljs-type">32</span>&gt;] [-<span class="hljs-type">computername</span>] &lt;St<br>    ring&gt; [&lt;<span class="hljs-type">CommonParameters</span>&gt;]<br><br><br>说明<br>    使用WMI接口从<span class="hljs-number">1</span>或多个主机获取, 可用空间大于<span class="hljs-number">50</span>%的win32_logicaldisk实例。 显<br>    示磁盘驱动，空间空间，总大小，空闲百分比<br><br><br>相关链接<br><br>备注<br>    若要查看示例，请键入: <span class="hljs-string">&quot;get-help D:\test.ps1 -examples&quot;</span>.<br>    有关详细信息，请键入: <span class="hljs-string">&quot;get-help D:\test.ps1 -detailed&quot;</span>.<br>    若要获取技术信息，请键入: <span class="hljs-string">&quot;get-help D:\test.ps1 -full&quot;</span>.<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs powershell">D:\test.ps1 [[-<span class="hljs-type">drivetype</span>] &lt;<span class="hljs-built_in">Int</span><span class="hljs-type">32</span>&gt;] [[-<span class="hljs-type">gtfree</span>] &lt;<span class="hljs-built_in">Int</span><span class="hljs-type">32</span>&gt;] [-<span class="hljs-type">computername</span>] &lt;St<br>   ring&gt; [&lt;<span class="hljs-type">CommonParameters</span>&gt;]<br></code></pre></td></tr></table></figure>
+
+<p>说明每个参数均可以按位置传递参数。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">15</span>:<span class="hljs-number">23</span> [<span class="hljs-type">PS</span>] D:\ :&gt;  .\test.ps1<br><br>位于命令管道位置 <span class="hljs-number">1</span> 的 cmdlet test.ps1<br>请为以下参数提供值:<br>(请键入 !? 以查看帮助。)<br>computername: localhost<br><br>deviceid freesize(gb) size(gb) %free<br><span class="hljs-literal">--------</span> <span class="hljs-literal">------------</span> <span class="hljs-literal">--------</span> <span class="hljs-literal">-----</span><br>E:                 <span class="hljs-number">82</span>      <span class="hljs-number">122</span>    <span class="hljs-number">67</span><br>F:                <span class="hljs-number">101</span>      <span class="hljs-number">101</span>   <span class="hljs-number">100</span><br>G:                <span class="hljs-number">396</span>      <span class="hljs-number">447</span>    <span class="hljs-number">89</span><br></code></pre></td></tr></table></figure>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%91%A8%E6%9C%AB%E7%9B%B4%E6%92%AD%E5%88%86%E4%BA%AB/">周末直播分享</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/linux/">linux</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/07/31/Nginx%E9%80%9A%E7%94%A8%E9%85%8D%E7%BD%AE/">
+                        <span class="hidden-mobile">Nginx通用配置</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"D90Wrbg89ly7rBFpYHqsP64i-gzGzoHsz","appKey":"dcYNEdcRY3NGzaWBD9JDU4JM","path":"window.location.pathname","placeholder":"看完文章有什么建议呢","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://d90wrbg8.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+    <!-- 51.la Analytics -->
+    <script defer type="text/javascript" src="//js.users.51.la/21348977.js"></script>
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
